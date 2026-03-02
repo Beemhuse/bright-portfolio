@@ -4,7 +4,7 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 import {
   Layers,
   Database,
-  Paintbrush,
+  // Paintbrush,
   Cloud,
   ArrowUpRight,
   Check,
@@ -42,27 +42,28 @@ const Services = () => {
       ],
       color: "#FF3333",
     },
-    {
-      icon: Paintbrush,
-      title: "UI/UX Design",
-      description:
-        "Creating intuitive, visually stunning designs that delight users and drive engagement.",
-      features: [
-        "Figma Prototyping",
-        "Design Systems",
-        "User Research",
-        "Motion Design",
-      ],
-      color: "#CC0000",
-    },
+    // {
+    //   icon: Paintbrush,
+    //   title: "UI/UX Design",
+    //   description:
+    //     "Creating intuitive, visually stunning designs that delight users and drive engagement.",
+    //   features: [
+    //     "Figma Prototyping",
+    //     "Design Systems",
+    //     "User Research",
+    //     "Motion Design",
+    //   ],
+    //   color: "#CC0000",
+    // },
     {
       icon: Cloud,
       title: "DevOps & Cloud",
       description:
         "Streamlining deployment and infrastructure management for optimal performance.",
       features: [
-        "AWS & GCP",
+        "AWS & Render",
         "Docker",
+        "VPS",
         "CI/CD Pipelines",
         "Monitoring",
       ],

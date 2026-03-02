@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import { Code2, Palette, Server, Sparkles } from 'lucide-react';
+import {  Sparkles } from 'lucide-react';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -11,12 +11,12 @@ const About = () => {
   const contentRef = useRef<HTMLDivElement>(null);
   const statsRef = useRef<HTMLDivElement>(null);
 
-  const skills = [
-    { icon: Code2, label: 'Frontend Development', desc: 'React, Next js, TypeScript' },
-    { icon: Server, label: 'Backend Architecture', desc: 'Node.js, Python, Nest.js, PostgresSql' },
-    { icon: Palette, label: 'UI/UX Design', desc: 'Figma, Motion Design' },
-    { icon: Sparkles, label: 'Performance', desc: 'Optimization, SEO' },
-  ];
+  // const skills = [
+  //   { icon: Code2, label: 'Frontend Development', desc: 'React, Next js, TypeScript' },
+  //   { icon: Server, label: 'Backend Architecture', desc: 'Node.js, Python, Nest.js, PostgresSql' },
+  //   { icon: Palette, label: 'UI/UX Design', desc: 'Figma, Motion Design' },
+  //   { icon: Sparkles, label: 'Performance', desc: 'Optimization, SEO' },
+  // ];
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -53,7 +53,7 @@ const About = () => {
       // Content slide animation with stagger
       gsap.from(contentRef.current?.children || [], {
         x: -60,
-        opacity: 0,
+        // opacity: 0,
         duration: 0.8,
         stagger: 0.15,
         ease: 'power3.out',
