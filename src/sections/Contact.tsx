@@ -297,10 +297,10 @@ const Contact = () => {
                 <div>
                   <p className="font-body text-sm text-white/50 mb-1">Email</p>
                   <a
-                    href="mailto:hello@bright.dev"
+                    href="mailto:brightawah94@gmail.com"
                     className="font-body text-lg text-white hover:text-red transition-colors duration-300"
                   >
-                    hello@bright.dev
+                    brightawah94@gmail.com
                   </a>
                 </div>
               </div>
@@ -314,7 +314,7 @@ const Contact = () => {
                     Location
                   </p>
                   <p className="font-body text-lg text-white">
-                    San Francisco, CA
+                    Enugu, Nigeria
                   </p>
                 </div>
               </div>
@@ -325,9 +325,9 @@ const Contact = () => {
               <p className="font-body text-sm text-white/50 mb-4">Follow Me</p>
               <div className="social-icons flex gap-4">
                 {[
-                  { icon: Github, href: "https://github.com" },
-                  { icon: Linkedin, href: "https://linkedin.com" },
-                  { icon: Twitter, href: "https://twitter.com" },
+                  { icon: Github, href: "https://github.com/Beemhuse" },
+                  { icon: Linkedin, href: "https://www.linkedin.com/in/bright-awah-59b707223/" },
+                  { icon: Twitter, href: "https://twitter.com/D3_lores" },
                 ].map((social, i) => (
                   <a
                     key={i}
