@@ -360,9 +360,9 @@ const Hero = () => {
             {/* Social Links */}
             <div className="flex gap-6 mt-12">
               {[
-                { icon: Github, href: 'https://github.com' },
-                { icon: Linkedin, href: 'https://linkedin.com' },
-                { icon: Twitter, href: 'https://twitter.com' },
+                { icon: Github, href: 'https://github.com/Beemhuse' },
+                { icon: Linkedin, href: 'https://www.linkedin.com/in/bright-awah-59b707223/' },
+                { icon: Twitter, href: 'https://twitter.com/D3_lores' },
               ].map((social, i) => (
                 <a
                   key={i}
@@ -390,7 +390,7 @@ const Hero = () => {
               {/* Image Container */}
               <div className="relative overflow-hidden rounded-3xl">
                 <img
-                  src="/hero-portrait.jpg"
+                  src="/bright.avif"
                   alt="Bright - Fullstack Software Engineer"
                   className="w-full h-full object-cover"
                 />
@@ -412,7 +412,7 @@ const Hero = () => {
                   className="absolute -top-4 -right-4 lg:-top-8 lg:-right-8 glass-card px-6 py-4 rounded-xl animate-float"
                   style={{ animationDelay: '1s' }}
                 >
-                  <span className="font-display text-4xl lg:text-5xl font-bold text-red">50+</span>
+                  <span className="font-display text-4xl lg:text-5xl font-bold text-red">10+</span>
                   <p className="font-body text-sm text-white/70">Projects Completed</p>
                 </div>
 

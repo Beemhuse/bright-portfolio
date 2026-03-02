@@ -145,7 +145,7 @@ const About = () => {
           >
             <div className="relative aspect-[4/5] overflow-hidden rounded-2xl">
               <img
-                src="/about-portrait.jpg"
+                src="/bright.avif"
                 alt="Bright working"
                 className="w-full h-full object-cover"
               />
@@ -217,7 +217,7 @@ const About = () => {
         </div>
 
         {/* Skills Grid */}
-        <div className="skills-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+        {/* <div className="skills-grid grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
           {skills.map((skill, index) => (
             <div
               key={index}
@@ -230,7 +230,7 @@ const About = () => {
               <p className="font-body text-sm text-white/50">{skill.desc}</p>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -94,7 +94,7 @@ const Contact = () => {
         },
         "UMmovUZrNiSEogzYu",
       );
-    } catch (e) {
+    } catch (e: any) {
       setIsSubmitting(false);
       console.error(e.message)
       setIsSubmitted(true);
