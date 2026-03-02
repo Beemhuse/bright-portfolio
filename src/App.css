@@ -1,0 +1,114 @@
+/* App-specific styles */
+
+/* Ensure smooth scrolling */
+html.lenis {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+.lenis.lenis-scrolling iframe {
+  pointer-events: none;
+}
+
+/* Hero canvas */
+canvas {
+  display: block;
+}
+
+/* Ensure proper z-indexing */
+section {
+  position: relative;
+}
+
+/* Fix for mobile viewport */
+@supports (height: 100dvh) {
+  .min-h-screen {
+    min-height: 100dvh;
+  }
+}
+
+/* Performance optimizations */
+.will-change-transform {
+  will-change: transform;
+}
+
+.gpu-accelerated {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* Prevent text selection during animations */
+.no-select {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+/* Smooth image loading */
+img {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+img[data-loading="true"] {
+  opacity: 0;
+}
+
+/* Focus styles for accessibility */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid #ff0000;
+  outline-offset: 2px;
+}
+
+/* Hide scrollbar but keep functionality */
+.hide-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.hide-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Glass morphism enhancement */
+@supports (backdrop-filter: blur(20px)) {
+  .glass-card {
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+  }
+}
+
+@supports not (backdrop-filter: blur(20px)) {
+  .glass-card {
+    background: rgba(25, 25, 25, 0.95);
+  }
+}
+
+/* Animation delays for stagger effects */
+.stagger-1 { animation-delay: 0.1s; }
+.stagger-2 { animation-delay: 0.2s; }
+.stagger-3 { animation-delay: 0.3s; }
+.stagger-4 { animation-delay: 0.4s; }
+.stagger-5 { animation-delay: 0.5s; }
+
+/* Text balance for better typography */
+h1, h2, h3 {
+  text-wrap: balance;
+}
+
+p {
+  text-wrap: pretty;
+}
