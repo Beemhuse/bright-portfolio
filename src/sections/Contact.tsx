@@ -23,7 +23,6 @@ const Contact = () => {
       // Header animation
       gsap.from(".contact-header > *", {
         y: 50,
-        opacity: 0,
         duration: 1,
         stagger: 0.1,
         ease: "power3.out",
@@ -37,7 +36,6 @@ const Contact = () => {
       // Form animation
       gsap.from(".contact-form > *", {
         x: -60,
-        opacity: 0,
         duration: 0.8,
         stagger: 0.1,
         ease: "power3.out",
@@ -51,7 +49,6 @@ const Contact = () => {
       // Info animation
       gsap.from(".contact-info > *", {
         x: 60,
-        opacity: 0,
         duration: 0.8,
         stagger: 0.1,
         ease: "power3.out",
@@ -64,8 +61,7 @@ const Contact = () => {
 
       // Social icons animation
       gsap.from(".social-icon", {
-        scale: 0,
-        opacity: 0,
+        scale: 0.9,
         duration: 0.6,
         stagger: 0.1,
         ease: "back.out(2)",
@@ -124,18 +120,18 @@ const Contact = () => {
       className="relative py-32 lg:py-40 overflow-hidden"
     >
       {/* Background Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-red/5 rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-red-500/5 rounded-full blur-[200px] pointer-events-none" />
 
       <div className="relative z-10 w-full px-6 lg:px-12">
         {/* Section Header */}
         <div className="contact-header text-center mb-20">
-          <span className="font-body text-sm uppercase tracking-[0.3em] text-red mb-4 block">
+          <span className="font-body text-sm uppercase tracking-[0.3em] text-red-500 mb-4 block">
             Get In Touch
           </span>
           <h2 className="font-display text-5xl lg:text-7xl xl:text-8xl font-bold mb-6">
             Let's Build the
             <br />
-            <span className="text-red">Future Together</span>
+            <span className="text-red-500">Future Together</span>
           </h2>
           <p className="font-body text-lg text-white/60 max-w-2xl mx-auto">
             Have a project in mind? Let's discuss how we can bring your vision
@@ -154,7 +150,7 @@ const Contact = () => {
                   htmlFor="name"
                   className={`absolute left-0 font-body transition-all duration-300 pointer-events-none ${
                     focusedField === "name" || formData.name
-                      ? "-top-6 text-sm text-red"
+                      ? "-top-6 text-sm text-red-500"
                       : "top-4 text-white/50"
                   }`}
                 >
@@ -169,10 +165,10 @@ const Contact = () => {
                   onFocus={() => setFocusedField("name")}
                   onBlur={() => setFocusedField(null)}
                   required
-                  className="w-full bg-transparent border-b-2 border-white/20 py-4 text-white font-body focus:outline-none focus:border-red transition-colors duration-300"
+                  className="w-full bg-transparent border-b-2 border-white/20 py-4 text-white font-body focus:outline-none focus:border-red-500 transition-colors duration-300"
                 />
                 <div
-                  className="absolute bottom-0 left-0 h-0.5 bg-red transition-all duration-500"
+                  className="absolute bottom-0 left-0 h-0.5 bg-red-500 transition-all duration-500"
                   style={{ width: focusedField === "name" ? "100%" : "0%" }}
                 />
               </div>
@@ -183,7 +179,7 @@ const Contact = () => {
                   htmlFor="email"
                   className={`absolute left-0 font-body transition-all duration-300 pointer-events-none ${
                     focusedField === "email" || formData.email
-                      ? "-top-6 text-sm text-red"
+                      ? "-top-6 text-sm text-red-500"
                       : "top-4 text-white/50"
                   }`}
                 >
@@ -198,10 +194,10 @@ const Contact = () => {
                   onFocus={() => setFocusedField("email")}
                   onBlur={() => setFocusedField(null)}
                   required
-                  className="w-full bg-transparent border-b-2 border-white/20 py-4 text-white font-body focus:outline-none focus:border-red transition-colors duration-300"
+                  className="w-full bg-transparent border-b-2 border-white/20 py-4 text-white font-body focus:outline-none focus:border-red-500 transition-colors duration-300"
                 />
                 <div
-                  className="absolute bottom-0 left-0 h-0.5 bg-red transition-all duration-500"
+                  className="absolute bottom-0 left-0 h-0.5 bg-red-500 transition-all duration-500"
                   style={{ width: focusedField === "email" ? "100%" : "0%" }}
                 />
               </div>
@@ -212,7 +208,7 @@ const Contact = () => {
                   htmlFor="message"
                   className={`absolute left-0 font-body transition-all duration-300 pointer-events-none ${
                     focusedField === "message" || formData.message
-                      ? "-top-6 text-sm text-red"
+                      ? "-top-6 text-sm text-red-500"
                       : "top-4 text-white/50"
                   }`}
                 >
@@ -227,10 +223,10 @@ const Contact = () => {
                   onBlur={() => setFocusedField(null)}
                   required
                   rows={4}
-                  className="w-full bg-transparent border-b-2 border-white/20 py-4 text-white font-body focus:outline-none focus:border-red transition-colors duration-300 resize-none"
+                  className="w-full bg-transparent border-b-2 border-white/20 py-4 text-white font-body focus:outline-none focus:border-red-500 transition-colors duration-300 resize-none"
                 />
                 <div
-                  className="absolute bottom-0 left-0 h-0.5 bg-red transition-all duration-500"
+                  className="absolute bottom-0 left-0 h-0.5 bg-red-500 transition-all duration-500"
                   style={{ width: focusedField === "message" ? "100%" : "0%" }}
                 />
               </div>
@@ -239,7 +235,7 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="magnetic-btn w-full py-5 bg-red text-white font-body text-sm uppercase tracking-widest hover:bg-red-dark transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed group hover:scale-[1.02]"
+                className="magnetic-btn w-full py-5 bg-red-500 text-white font-body text-sm uppercase tracking-widest hover:bg-red-600 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed group hover:scale-[1.02]"
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
@@ -291,14 +287,14 @@ const Contact = () => {
             {/* Contact Details */}
             <div className="space-y-6">
               <div className="flex items-center gap-4 group">
-                <div className="w-14 h-14 bg-red/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-red group-hover:scale-110 transition-all duration-300">
-                  <Mail className="w-6 h-6 text-red group-hover:text-white transition-colors duration-300" />
+                <div className="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-red-500 group-hover:scale-110 transition-all duration-300">
+                  <Mail className="w-6 h-6 text-red-500 group-hover:text-white transition-colors duration-300" />
                 </div>
                 <div>
                   <p className="font-body text-sm text-white/50 mb-1">Email</p>
                   <a
                     href="mailto:brightawah94@gmail.com"
-                    className="font-body text-lg text-white hover:text-red transition-colors duration-300"
+                    className="font-body text-lg text-white hover:text-red-500 transition-colors duration-300"
                   >
                     brightawah94@gmail.com
                   </a>
@@ -306,8 +302,8 @@ const Contact = () => {
               </div>
 
               <div className="flex items-center gap-4 group">
-                <div className="w-14 h-14 bg-red/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-red group-hover:scale-110 transition-all duration-300">
-                  <MapPin className="w-6 h-6 text-red group-hover:text-white transition-colors duration-300" />
+                <div className="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-red-500 group-hover:scale-110 transition-all duration-300">
+                  <MapPin className="w-6 h-6 text-red-500 group-hover:text-white transition-colors duration-300" />
                 </div>
                 <div>
                   <p className="font-body text-sm text-white/50 mb-1">
@@ -334,7 +330,7 @@ const Contact = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="social-icon w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center hover:bg-red hover:scale-110 transition-all duration-300 group"
+                    className="social-icon w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center hover:bg-red-500 hover:scale-110 transition-all duration-300 group"
                   >
                     <social.icon className="w-5 h-5 text-white/50 group-hover:text-white transition-colors duration-300" />
                   </a>
@@ -343,7 +339,7 @@ const Contact = () => {
             </div>
 
             {/* Availability Badge */}
-            <div className="glass-card p-6 rounded-xl group hover:border-red/50 transition-all duration-300">
+            <div className="glass-card p-6 rounded-xl group hover:border-red-500/50 transition-all duration-300">
               <div className="flex items-center gap-3">
                 <div className="relative">
                   <div className="w-3 h-3 bg-green-500 rounded-full" />

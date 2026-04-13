@@ -133,7 +133,6 @@ const Hero = () => {
       // Greeting animation with bounce
       tl.from(greetingRef.current, {
         y: 60,
-        opacity: 0,
         duration: 0.8,
         ease: 'back.out(1.7)',
       });
@@ -146,7 +145,6 @@ const Hero = () => {
           {
             rotateX: 90,
             y: 80,
-            opacity: 0,
             duration: 0.8,
             stagger: {
               each: 0.03,
@@ -163,7 +161,6 @@ const Hero = () => {
         subtextRef.current,
         {
           y: 40,
-          opacity: 0,
           duration: 0.8,
           ease: 'power3.out',
         },
@@ -174,8 +171,7 @@ const Hero = () => {
       tl.from(
         ctaRef.current?.children || [],
         {
-          scale: 0,
-          opacity: 0,
+          scale: 0.9,
           duration: 0.6,
           stagger: 0.1,
           ease: 'back.out(2)',
@@ -199,8 +195,7 @@ const Hero = () => {
       tl.from(
         badgesRef.current?.children || [],
         {
-          y: 60,
-          opacity: 0,
+          y: 20,
           duration: 0.8,
           stagger: 0.15,
           ease: 'back.out(1.7)',
@@ -217,7 +212,7 @@ const Hero = () => {
     const ctx = gsap.context(() => {
       // Headline moves up faster
       gsap.to(headlineRef.current, {
-        y: -250,
+        y: -200,
         scrollTrigger: {
           trigger: sectionRef.current,
           start: 'top top',
@@ -292,7 +287,7 @@ const Hero = () => {
             {/* Greeting */}
             <span
               ref={greetingRef}
-              className="inline-block font-body text-red text-lg uppercase tracking-[0.3em] mb-6"
+              className="inline-block font-body text-red-500 text-lg uppercase tracking-[0.3em] mb-6"
             >
               Hello!
             </span>
@@ -300,7 +295,7 @@ const Hero = () => {
             {/* Headline */}
             <h1
               ref={headlineRef}
-              className="font-display text-6xl sm:text-7xl lg:text-8xl xl:text-9xl font-bold leading-none mb-4"
+              className="font-display text-4xl sm:text-6xl lg:text-6xl xl:text-5xl font-bold leading-none mb-4"
               style={{ transformStyle: 'preserve-3d' }}
             >
               {headlineText.split('').map((char, i) => (
@@ -313,7 +308,7 @@ const Hero = () => {
                 </span>
               ))}
               <br />
-              <span className="text-red">{subHeadlineText.split('').map((char, i) => (
+              <span className="text-red-500">{subHeadlineText.split('').map((char, i) => (
                 <span
                   key={i}
                   className="char inline-block"
@@ -341,7 +336,7 @@ const Hero = () => {
                   e.preventDefault();
                   document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="magnetic-btn px-8 py-4 bg-red text-white font-body text-sm uppercase tracking-widest hover:bg-red-dark transition-all duration-300 animate-pulse-red hover:scale-105"
+                className="magnetic-btn px-8 py-4 bg-red-500 text-white font-body text-sm uppercase tracking-widest hover:bg-red-600 transition-all duration-300 animate-pulse-red hover:scale-105"
               >
                 <span>Hire Me</span>
               </a>
@@ -351,7 +346,7 @@ const Hero = () => {
                   e.preventDefault();
                   document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
                 }}
-                className="magnetic-btn px-8 py-4 border border-white/30 text-white font-body text-sm uppercase tracking-widest hover:border-red hover:text-red transition-all duration-300 hover:scale-105"
+                className="magnetic-btn px-8 py-4 border border-white/30 text-white font-body text-sm uppercase tracking-widest hover:border-red-500 hover:text-red-500 transition-all duration-300 hover:scale-105"
               >
                 <span>View Work</span>
               </a>
@@ -369,7 +364,7 @@ const Hero = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:border-red hover:text-red hover:scale-110 transition-all duration-300"
+                  className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:border-red-500 hover:text-red-500 hover:scale-110 transition-all duration-300"
                 >
                   <social.icon className="w-5 h-5" />
                 </a>
@@ -385,16 +380,16 @@ const Hero = () => {
           >
             <div className="relative aspect-square max-w-lg mx-auto lg:max-w-none">
               {/* Animated Glow Effect */}
-              <div className="absolute inset-0 bg-red/20 rounded-full blur-[100px] animate-pulse" />
+              <div className="absolute inset-0 bg-red-500/20 rounded-full blur-[100px] animate-pulse" />
               
               {/* Image Container */}
               <div className="relative overflow-hidden rounded-3xl">
-                <img
+                {/* <img
                   src="/bright.avif"
                   alt="Bright - Fullstack Software Engineer"
                   className="w-full h-full object-cover"
                 />
-                
+                 */}
                 {/* Overlay Gradient */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
               </div>
@@ -403,7 +398,7 @@ const Hero = () => {
               <div ref={badgesRef}>
                 {/* Badge 1 */}
                 <div className="absolute -bottom-4 -left-4 lg:-bottom-8 lg:-left-8 glass-card px-6 py-4 rounded-xl animate-float">
-                  <span className="font-display text-4xl lg:text-5xl font-bold text-red">5+</span>
+                  <span className="font-display text-4xl lg:text-5xl font-bold text-red-500">5+</span>
                   <p className="font-body text-sm text-white/70">Years Experience</p>
                 </div>
 
@@ -412,7 +407,7 @@ const Hero = () => {
                   className="absolute -top-4 -right-4 lg:-top-8 lg:-right-8 glass-card px-6 py-4 rounded-xl animate-float"
                   style={{ animationDelay: '1s' }}
                 >
-                  <span className="font-display text-4xl lg:text-5xl font-bold text-red">10+</span>
+                  <span className="font-display text-4xl lg:text-5xl font-bold text-red-500">10+</span>
                   <p className="font-body text-sm text-white/70">Projects Completed</p>
                 </div>
 
@@ -436,13 +431,13 @@ const Hero = () => {
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-2">
         <span className="font-body text-xs uppercase tracking-widest text-white/50">Scroll</span>
         <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
-          <div className="w-1.5 h-3 bg-red rounded-full animate-bounce" />
+          <div className="w-1.5 h-3 bg-red-500 rounded-full animate-bounce" />
         </div>
       </div>
 
       {/* Corner Decorations */}
-      <div className="absolute top-32 right-12 w-px h-32 bg-gradient-to-b from-transparent via-red/50 to-transparent hidden lg:block" />
-      <div className="absolute bottom-32 left-12 w-px h-32 bg-gradient-to-b from-transparent via-red/50 to-transparent hidden lg:block" />
+      <div className="absolute top-32 right-12 w-px h-32 bg-gradient-to-b from-transparent via-red-500/50 to-transparent hidden lg:block" />
+      <div className="absolute bottom-32 left-12 w-px h-32 bg-gradient-to-b from-transparent via-red-500/50 to-transparent hidden lg:block" />
     </section>
   );
 };
