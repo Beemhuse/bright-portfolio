@@ -9,7 +9,12 @@ const Footer = () => {
   const footerRef = useRef<HTMLElement>(null);
 
   const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+    const lenis = (window as any).lenis;
+    if (lenis) {
+      lenis.scrollTo(0);
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
   };
 
   useEffect(() => {
@@ -42,13 +47,12 @@ const Footer = () => {
     { name: 'GitHub', href: 'https://github.com/Beemhuse' },
     { name: 'LinkedIn', href: 'https://www.linkedin.com/in/bright-awah-59b707223/' },
     { name: 'Twitter', href: 'https://twitter.com/D3_lores' },
-    // { name: 'Dribbble', href: 'https://dribbble.com' },
   ];
 
   return (
     <footer
       ref={footerRef}
-      className="relative py-20 lg:py-32 border-t border-white/5"
+      className="relative py-20 lg:py-32 border-t border-white/5 overflow-hidden"
     >
       <div className="w-full px-6 lg:px-12">
         <div className="footer-content">
@@ -73,8 +77,7 @@ const Footer = () => {
             </div>
 
             {/* Navigation */}
-            <div>
-              <h4 className="font-display text-xl font-bold mb-6">Navigation</h4>
+              <h4 className="font-display text-lg uppercase tracking-wider font-semibold mb-6">Navigation</h4>
               <ul className="space-y-4">
                 {navLinks.map((link) => (
                   <li key={link.name}>
@@ -82,20 +85,24 @@ const Footer = () => {
                       href={link.href}
                       onClick={(e) => {
                         e.preventDefault();
-                        document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
+                        const lenis = (window as any).lenis;
+                        if (lenis) {
+                          lenis.scrollTo(link.href);
+                        } else {
+                          document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
+                        }
                       }}
-                      className="font-body text-white/60 hover:text-red transition-colors duration-300 link-underline"
+                      className="font-body text-xs text-white/50 hover:text-red transition-colors duration-300 link-underline uppercase tracking-wider"
                     >
                       {link.name}
                     </a>
                   </li>
                 ))}
               </ul>
-            </div>
 
             {/* Social */}
             <div>
-              <h4 className="font-display text-xl font-bold mb-6">Connect</h4>
+              <h4 className="font-display text-lg uppercase tracking-wider font-semibold mb-6">Connect</h4>
               <ul className="space-y-4">
                 {socialLinks.map((link) => (
                   <li key={link.name}>
@@ -103,7 +110,7 @@ const Footer = () => {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-body text-white/60 hover:text-red transition-colors duration-300 link-underline"
+                      className="font-body text-xs text-white/50 hover:text-red transition-colors duration-300 link-underline uppercase tracking-wider"
                     >
                       {link.name}
                     </a>
@@ -115,29 +122,29 @@ const Footer = () => {
 
           {/* Bottom Bar */}
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6 pt-10 border-t border-white/5">
-            <p className="font-body text-sm text-white/40 flex items-center gap-2">
-              Made with <Heart className="w-4 h-4 text-red fill-red" /> by Bright
+            <p className="font-body text-xs text-white/40 flex items-center gap-2 uppercase tracking-wider">
+              Made with <Heart className="w-3.5 h-3.5 text-red fill-red" /> by Bright
             </p>
 
-            <p className="font-body text-sm text-white/40">
+            <p className="font-body text-xs text-white/40 uppercase tracking-wider">
               © {new Date().getFullYear()} Bright. All rights reserved.
             </p>
 
             {/* Back to Top */}
             <button
               onClick={scrollToTop}
-              className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:border-red hover:bg-red transition-all duration-300 group"
+              className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center hover:border-red hover:bg-red transition-all duration-500 group"
               aria-label="Back to top"
             >
-              <ArrowUp className="w-5 h-5 text-white/50 group-hover:text-white transition-colors duration-300" />
+              <ArrowUp className="w-4 h-4 text-white/40 group-hover:text-dark transition-colors duration-500" />
             </button>
           </div>
         </div>
       </div>
 
       {/* Large Background Text */}
-      <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none">
-        <span className="font-display text-[20vw] font-bold text-white/[0.02] whitespace-nowrap block text-center leading-none">
+      <div className="absolute bottom-0 left-0 right-0 overflow-hidden pointer-events-none select-none z-0">
+        <span className="font-display text-[15vw] sm:text-[18vw] lg:text-[20vw] font-bold text-white/[0.02] whitespace-nowrap block text-center leading-none">
           BRIGHT
         </span>
       </div>

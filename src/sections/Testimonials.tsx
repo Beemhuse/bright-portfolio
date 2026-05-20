@@ -148,10 +148,10 @@ const Testimonials = () => {
   return (
     <section
       ref={sectionRef}
-      className="relative py-32 lg:py-40 overflow-hidden"
+      className="relative py-32 lg:py-40 overflow-hidden bg-dark"
     >
       {/* Background Elements */}
-      <div className="absolute top-0 left-0 w-full h-full">
+      <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
         <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-red/5 rounded-full blur-[150px]" />
         <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-red/5 rounded-full blur-[150px]" />
       </div>
@@ -159,51 +159,53 @@ const Testimonials = () => {
       <div className="relative z-10 w-full px-6 lg:px-12">
         {/* Section Header */}
         <div className="testimonials-header text-center mb-20">
-          <span className="font-body text-sm uppercase tracking-[0.3em] text-red mb-4 block">
+          <span className="font-body text-xs uppercase tracking-[0.3em] text-red mb-4 block">
             Client Voices
           </span>
-          <h2 className="font-display text-5xl lg:text-7xl xl:text-8xl font-bold">
+          <h2 className="font-display text-4xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
             What They Say
           </h2>
         </div>
 
         {/* Testimonial Card */}
         <div className="testimonial-card max-w-5xl mx-auto">
-          <div className="relative glass-card rounded-3xl p-8 lg:p-16 overflow-hidden">
+          <div className="relative bg-dark-light border border-white/5 p-8 sm:p-10 lg:p-16 overflow-hidden shadow-[0_24px_60px_rgba(0,0,0,0.8)]">
             {/* Decorative Quote */}
-            <div className="absolute top-8 right-8 opacity-10">
-              <Quote className="w-32 h-32 text-red" />
+            <div className="absolute top-8 right-8 opacity-5">
+              <Quote className="w-24 h-24 sm:w-32 sm:h-32 text-red" />
             </div>
 
             {/* Quote Icon */}
-            <div className="absolute -top-6 left-8 lg:left-16 w-12 h-12 bg-red rounded-xl flex items-center justify-center shadow-glow">
-              <Quote className="w-6 h-6 text-white" />
+            <div className="absolute -top-6 left-8 lg:left-16 w-12 h-12 bg-red flex items-center justify-center shadow-glow">
+              <Quote className="w-5 h-5 text-dark" />
             </div>
 
             {/* Testimonial Content */}
-            <div ref={quoteRef} className="relative min-h-[280px] pt-6">
-              {/* Rating Stars */}
-              <div className="flex gap-1 mb-6">
-                {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
-                  <Star key={i} className="w-5 h-5 text-red fill-red" />
-                ))}
+            <div ref={quoteRef} className="relative min-h-[220px] sm:min-h-[160px] md:min-h-[130px] pt-6 flex flex-col justify-between">
+              <div>
+                {/* Rating Stars */}
+                <div className="flex gap-1 mb-6">
+                  {[...Array(testimonials[activeIndex].rating)].map((_, i) => (
+                    <Star key={i} className="w-4 h-4 text-red fill-red" />
+                  ))}
+                </div>
+
+                <blockquote className="font-body text-base sm:text-lg lg:text-xl xl:text-2xl text-white/90 leading-relaxed mb-8">
+                  "{testimonials[activeIndex].quote}"
+                </blockquote>
               </div>
 
-              <blockquote className="font-body text-xl lg:text-2xl xl:text-3xl text-white/90 leading-relaxed mb-10">
-                "{testimonials[activeIndex].quote}"
-              </blockquote>
-
               <div className="flex items-center gap-4">
-                <div className="w-14 h-14 bg-red/20 rounded-full flex items-center justify-center border-2 border-red/30">
-                  <span className="font-display text-xl font-bold text-red">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 bg-red/5 flex items-center justify-center border border-red/20">
+                  <span className="font-display text-base sm:text-lg font-bold text-red">
                     {testimonials[activeIndex].avatar}
                   </span>
                 </div>
                 <div>
-                  <p className="font-display text-xl font-bold">
+                  <p className="font-display text-base sm:text-lg font-bold text-white">
                     {testimonials[activeIndex].author}
                   </p>
-                  <p className="font-body text-sm text-white/50">
+                  <p className="font-body text-xs text-white/50">
                     {testimonials[activeIndex].role}
                   </p>
                 </div>
@@ -211,9 +213,9 @@ const Testimonials = () => {
             </div>
 
             {/* Navigation */}
-            <div className="flex items-center justify-between mt-10 pt-8 border-t border-white/10">
+            <div className="flex items-center justify-between mt-10 pt-8 border-t border-white/5">
               {/* Dots */}
-              <div className="flex gap-3">
+              <div className="flex gap-2">
                 {testimonials.map((_, index) => (
                   <button
                     key={index}
@@ -222,7 +224,7 @@ const Testimonials = () => {
                         setIsAnimating(true);
                         gsap.to(quoteRef.current, {
                           opacity: 0,
-                          y: 20,
+                          y: 10,
                           duration: 0.3,
                           onComplete: () => {
                             setActiveIndex(index);
@@ -236,10 +238,10 @@ const Testimonials = () => {
                         });
                       }
                     }}
-                    className={`h-3 rounded-full transition-all duration-500 ${
+                    className={`h-1 transition-all duration-500 ${
                       index === activeIndex
-                        ? 'bg-red w-10'
-                        : 'bg-white/20 hover:bg-white/40 w-3'
+                        ? 'bg-red w-8'
+                        : 'bg-white/10 hover:bg-white/30 w-3'
                     }`}
                     aria-label={`Go to testimonial ${index + 1}`}
                   />
@@ -247,20 +249,20 @@ const Testimonials = () => {
               </div>
 
               {/* Arrows */}
-              <div className="flex gap-3">
+              <div className="flex gap-2">
                 <button
                   onClick={prevTestimonial}
-                  className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:border-red hover:bg-red transition-all duration-300 group hover:scale-110"
+                  className="w-10 h-10 border border-white/5 bg-dark flex items-center justify-center hover:border-red hover:bg-red transition-all duration-300 group"
                   aria-label="Previous testimonial"
                 >
-                  <ChevronLeft className="w-5 h-5 text-white/50 group-hover:text-white transition-colors duration-300" />
+                  <ChevronLeft className="w-4 h-4 text-white/50 group-hover:text-dark transition-colors duration-300" />
                 </button>
                 <button
                   onClick={nextTestimonial}
-                  className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center hover:border-red hover:bg-red transition-all duration-300 group hover:scale-110"
+                  className="w-10 h-10 border border-white/5 bg-dark flex items-center justify-center hover:border-red hover:bg-red transition-all duration-300 group"
                   aria-label="Next testimonial"
                 >
-                  <ChevronRight className="w-5 h-5 text-white/50 group-hover:text-white transition-colors duration-300" />
+                  <ChevronRight className="w-4 h-4 text-white/50 group-hover:text-dark transition-colors duration-300" />
                 </button>
               </div>
             </div>
@@ -275,11 +277,11 @@ const Testimonials = () => {
             { value: '30+', label: 'Happy Clients' },
             { value: '5+', label: 'Years Experience' },
           ].map((stat, index) => (
-            <div key={index} className="text-center group">
-              <span className="font-display text-4xl lg:text-5xl font-bold text-red block mb-2 group-hover:scale-110 transition-transform duration-300">
+            <div key={index} className="text-center group border border-white/5 bg-dark-light/50 p-6">
+              <span className="font-display text-3xl lg:text-4xl font-bold text-red block mb-2 group-hover:scale-105 transition-transform duration-300">
                 {stat.value}
               </span>
-              <span className="font-body text-sm text-white/50">{stat.label}</span>
+              <span className="font-body text-xs text-white/40 tracking-wider uppercase">{stat.label}</span>
             </div>
           ))}
         </div>

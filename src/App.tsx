@@ -8,7 +8,7 @@ import './App.css';
 // Sections
 import Navigation from './sections/Navigation';
 import Hero from './sections/Hero';
-import LogoCarousel from './sections/LogoCarousel';
+// import LogoCarousel from './sections/LogoCarousel';
 import About from './sections/About';
 import Services from './sections/Services';
 import Projects from './sections/Projects';
@@ -28,7 +28,12 @@ const ScrollToTop = () => {
   const location = useLocation();
   
   useEffect(() => {
-    window.scrollTo(0, 0);
+    const lenis = (window as any).lenis;
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
   }, [location]);
   
   return null;
@@ -54,7 +59,6 @@ const HomePage = () => {
       className={`transition-opacity duration-1000 ${isLoaded ? 'opacity-100' : 'opacity-0'}`}
     >
       <Hero />
-      <LogoCarousel />
       <About />
       <Services />
       <Projects />
@@ -81,6 +85,9 @@ const AppContent = () => {
       touchMultiplier: 2,
     });
 
+    // Make lenis globally accessible for other components (navigation, footer, pages)
+    (window as any).lenis = lenis;
+
     function raf(time: number) {
       lenis.raf(time);
       requestAnimationFrame(raf);
@@ -99,14 +106,12 @@ const AppContent = () => {
 
     return () => {
       lenis.destroy();
+      (window as any).lenis = undefined;
     };
   }, []);
 
   return (
-    <div className="relative min-h-screen bg-black text-white overflow-x-hidden">
-      {/* Grain Overlay */}
-      <div className="grain-overlay" />
-      
+    <div className="relative min-h-screen bg-white text-black overflow-x-hidden">
       {/* Custom Cursor */}
       <CustomCursor />
       

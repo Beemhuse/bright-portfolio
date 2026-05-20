@@ -135,8 +135,13 @@ const ProjectsPage = () => {
   });
 
   useEffect(() => {
-    // Scroll to top on mount
-    window.scrollTo(0, 0);
+    // Scroll to top on mount using Lenis if available
+    const lenis = (window as any).lenis;
+    if (lenis) {
+      lenis.scrollTo(0, { immediate: true });
+    } else {
+      window.scrollTo(0, 0);
+    }
 
     const ctx = gsap.context(() => {
       // Header animation
@@ -181,6 +186,12 @@ const ProjectsPage = () => {
 
   // 3D tilt effect for cards
   const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    // Disable on touch screens and mobile to prevent layout and scroll jitter
+    const isTouch = window.matchMedia("(pointer: coarse)").matches || 
+                    !window.matchMedia("(hover: hover)").matches ||
+                    window.innerWidth < 768;
+    if (isTouch) return;
+
     const card = e.currentTarget;
     const rect = card.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -209,19 +220,19 @@ const ProjectsPage = () => {
   };
 
   return (
-    <div ref={pageRef} className="min-h-screen bg-black text-white">
+    <div ref={pageRef} className="min-h-screen bg-dark text-white">
       {/* Navigation Bar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 nav-blur py-4">
+      <nav className="fixed top-0 left-0 right-0 z-50 nav-blur py-4 border-b border-white/5">
         <div className="w-full px-6 lg:px-12 flex items-center justify-between">
           <Link
             to="/"
-            className="font-display text-3xl font-bold tracking-wider text-white hover:text-red-500 transition-colors duration-300"
+            className="font-display text-2xl lg:text-3xl font-bold tracking-wider text-white hover:text-red transition-colors duration-300"
           >
             BRIGHT
           </Link>
           <Link
             to="/"
-            className="flex items-center gap-2 font-body text-sm uppercase tracking-widest text-white/70 hover:text-red-500 transition-colors duration-300"
+            className="flex items-center gap-2 font-body text-xs uppercase tracking-widest text-white/60 hover:text-white transition-colors duration-300"
           >
             <ArrowLeft className="w-4 h-4" />
             Back Home
@@ -230,16 +241,16 @@ const ProjectsPage = () => {
       </nav>
 
       {/* Main Content */}
-      <main className="pt-32 pb-20 px-6 lg:px-12">
+      <main className="pt-36 pb-20 px-6 lg:px-12">
         {/* Header */}
         <div className="projects-page-header max-w-7xl mx-auto mb-16">
-          <span className="font-body text-sm uppercase tracking-[0.3em] text-red-500 mb-4 block">
+          <span className="font-body text-xs uppercase tracking-[0.3em] text-red mb-4 block">
             Portfolio
           </span>
-          <h1 className="font-display text-6xl lg:text-8xl xl:text-9xl font-bold mb-6">
+          <h1 className="font-display text-5xl lg:text-7xl xl:text-8xl font-bold mb-6 tracking-tight">
             All Projects
           </h1>
-          <p className="font-body text-lg text-white/60 max-w-2xl">
+          <p className="font-body text-base text-white/50 max-w-2xl leading-relaxed">
             A comprehensive collection of my work across various technologies and industries. 
             Each project represents a unique challenge and creative solution.
           </p>
@@ -250,15 +261,15 @@ const ProjectsPage = () => {
           <div className="flex flex-col lg:flex-row gap-6 lg:items-center lg:justify-between">
             {/* Category Filters */}
             <div className="flex items-center gap-2 flex-wrap">
-              <Filter className="w-5 h-5 text-red-500 mr-2" />
+              <Filter className="w-4 h-4 text-red mr-2" />
               {categories.map((category) => (
                 <button
                   key={category}
                   onClick={() => setFilter(category)}
-                  className={`px-4 py-2 rounded-full font-body text-sm capitalize transition-all duration-300 ${
+                  className={`px-4 py-2 font-body text-xs tracking-wider uppercase transition-all duration-300 ${
                     filter === category
-                      ? 'bg-red-500 text-white'
-                      : 'bg-white/5 text-white/70 hover:bg-white/10 hover:text-white'
+                      ? 'bg-red text-dark font-semibold'
+                      : 'bg-white/5 text-white/60 hover:bg-white/10 hover:text-white border border-white/5'
                   }`}
                 >
                   {category}
@@ -268,13 +279,13 @@ const ProjectsPage = () => {
 
             {/* Search */}
             <div className="relative">
-              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-white/50" />
+              <Search className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-white/40" />
               <input
                 type="text"
                 placeholder="Search projects..."
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                className="w-full lg:w-80 pl-12 pr-4 py-3 bg-white/5 rounded-full font-body text-sm text-white placeholder:text-white/50 focus:outline-none focus:ring-2 focus:ring-red-500 transition-all duration-300"
+                className="w-full lg:w-80 pl-12 pr-4 py-2.5 bg-dark-light border border-white/10 font-body text-xs text-white placeholder:text-white/40 focus:outline-none focus:border-red focus:ring-1 focus:ring-red/20 transition-all duration-300"
               />
             </div>
           </div>
@@ -286,71 +297,68 @@ const ProjectsPage = () => {
             <div
               key={project.id}
               className="project-card-item group"
-              style={{ perspective: '1000px' }}
-              onMouseMove={handleMouseMove}
               onMouseEnter={() => setHoveredProject(project.id)}
-              onMouseLeave={handleMouseLeave}
+              onMouseLeave={() => setHoveredProject(null)}
             >
               <div
-                className="relative glass-card rounded-2xl overflow-hidden cursor-pointer"
-                style={{ transformStyle: 'preserve-3d' }}
+                className="relative bg-dark-light border border-white/5 overflow-hidden cursor-pointer shadow-lg hover:border-red/35 transition-all duration-500"
               >
                 {/* Image */}
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <img
                     src={project.image}
                     alt={project.title}
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                    className="w-full h-full object-cover transition-transform duration-750 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent opacity-60" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-dark to-transparent opacity-90" />
                   
                   {/* Year Badge */}
-                  <div className="absolute top-4 left-4 px-3 py-1 bg-red-500/80 rounded-full">
-                    <span className="font-body text-xs text-white">{project.year}</span>
+                  <div className="absolute top-4 left-4 px-3 py-1 bg-red text-dark font-body text-[10px] font-bold uppercase tracking-wider">
+                    <span className="text-dark">{project.year}</span>
                   </div>
 
                   {/* Featured Badge */}
                   {project.featured && (
-                    <div className="absolute top-4 right-4 px-3 py-1 bg-white/10 backdrop-blur-sm rounded-full">
-                      <span className="font-body text-xs text-white">Featured</span>
+                    <div className="absolute top-4 right-4 px-3 py-1 bg-white/10 backdrop-blur-sm border border-white/5">
+                      <span className="font-body text-[10px] uppercase tracking-wider text-white">Featured</span>
                     </div>
                   )}
 
                   {/* Hover Actions */}
-                  <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 flex items-center justify-center gap-4 opacity-0 group-hover:opacity-100 bg-dark/70 backdrop-blur-sm transition-opacity duration-300">
                     <a
                       href={project.liveUrl}
-                      className="w-14 h-14 bg-white rounded-full flex items-center justify-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100 hover:bg-red-500 hover:scale-110"
+                      className="w-12 h-12 bg-white flex items-center justify-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 hover:bg-red hover:scale-105"
                     >
-                      <ExternalLink className="w-6 h-6 text-black" />
+                      <ExternalLink className="w-5 h-5 text-dark" />
                     </a>
                     <a
                       href={project.githubUrl}
-                      className="w-14 h-14 bg-white rounded-full flex items-center justify-center transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-200 hover:bg-red-500 hover:scale-110"
+                      className="w-12 h-12 bg-white flex items-center justify-center transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300 hover:bg-red hover:scale-105"
                     >
-                      <Github className="w-6 h-6 text-black" />
+                      <Github className="w-5 h-5 text-dark" />
                     </a>
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6">
-                  <span className="font-body text-xs uppercase tracking-widest text-red-500 mb-2 block">
+                <div className="p-6 border-t border-white/5">
+                  <span className="font-body text-[10px] uppercase tracking-widest text-red mb-2 block font-semibold">
                     {project.category}
                   </span>
-                  <h3 className="font-display text-2xl font-bold mb-3 group-hover:text-red-500 transition-colors duration-300">
+                  <h3 className="font-display text-xl font-bold mb-3 group-hover:text-red transition-colors duration-300 text-white">
                     {project.title}
                   </h3>
-                  <p className="font-body text-sm text-white/60 mb-4 line-clamp-2">
+                  <p className="font-body text-sm text-white/50 mb-4 line-clamp-2 leading-relaxed">
                     {project.description}
                   </p>
 
                   {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-2">
+                  <div className="flex flex-wrap gap-1.5">
                     {project.tech.map((tech, tIndex) => (
                       <span
                         key={tIndex}
-                        className="px-3 py-1 bg-white/5 rounded-full font-body text-xs text-white/70"
+                        className="px-2.5 py-0.5 border border-white/10 font-body text-[10px] uppercase tracking-wider text-white/60 bg-dark/30"
                       >
                         {tech}
                       </span>
@@ -360,10 +368,10 @@ const ProjectsPage = () => {
 
                 {/* Hover Glow */}
                 <div
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                  className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
                   style={{
                     background: hoveredProject === project.id
-                      ? 'radial-gradient(600px circle at 50% 50%, rgba(255, 0, 0, 0.1), transparent 40%)'
+                      ? 'radial-gradient(400px circle at 50% 50%, rgba(197, 168, 128, 0.05), transparent 50%)'
                       : 'none',
                   }}
                 />
@@ -375,14 +383,14 @@ const ProjectsPage = () => {
         {/* No Results */}
         {filteredProjects.length === 0 && (
           <div className="text-center py-20">
-            <p className="font-body text-xl text-white/50">
+            <p className="font-body text-lg text-white/40">
               No projects found matching your criteria.
             </p>
           </div>
         )}
 
         {/* Stats */}
-        <div className="max-w-7xl mx-auto mt-20 pt-10 border-t border-white/10">
+        <div className="max-w-7xl mx-auto mt-20 pt-10 border-t border-white/5">
           <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
             {[
               { value: projects.length, label: 'Total Projects' },
@@ -390,11 +398,11 @@ const ProjectsPage = () => {
               { value: '15+', label: 'Technologies' },
               { value: '100%', label: 'Success Rate' },
             ].map((stat, index) => (
-              <div key={index} className="text-center">
-                <span className="font-display text-4xl lg:text-5xl font-bold text-red-500 block mb-2">
+              <div key={index} className="text-center border border-white/5 bg-dark-light/50 p-6">
+                <span className="font-display text-3xl lg:text-4xl font-bold text-red block mb-2">
                   {stat.value}
                 </span>
-                <span className="font-body text-sm text-white/50">{stat.label}</span>
+                <span className="font-body text-xs text-white/40 uppercase tracking-wider">{stat.label}</span>
               </div>
             ))}
           </div>
@@ -402,14 +410,14 @@ const ProjectsPage = () => {
       </main>
 
       {/* Footer */}
-      <footer className="py-10 border-t border-white/5">
+      <footer className="py-10 border-t border-white/5 bg-dark-light/30">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 flex flex-col lg:flex-row items-center justify-between gap-6">
-          <p className="font-body text-sm text-white/40">
+          <p className="font-body text-xs text-white/40 tracking-wider">
             © {new Date().getFullYear()} Bright. All rights reserved.
           </p>
           <Link
             to="/"
-            className="font-body text-sm text-white/40 hover:text-red-500 transition-colors duration-300"
+            className="font-body text-xs text-white/40 uppercase tracking-wider hover:text-red transition-colors duration-300"
           >
             Back to Home
           </Link>

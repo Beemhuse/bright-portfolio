@@ -120,18 +120,18 @@ const Contact = () => {
       className="relative py-32 lg:py-40 overflow-hidden"
     >
       {/* Background Glow */}
-      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-red-500/5 rounded-full blur-[200px] pointer-events-none" />
+      <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[1200px] h-[800px] bg-red/2 rounded-full blur-[220px] pointer-events-none" />
 
       <div className="relative z-10 w-full px-6 lg:px-12">
         {/* Section Header */}
         <div className="contact-header text-center mb-20">
-          <span className="font-body text-sm uppercase tracking-[0.3em] text-red-500 mb-4 block">
+          <span className="font-body text-sm uppercase tracking-[0.3em] text-red mb-4 block">
             Get In Touch
           </span>
           <h2 className="font-display text-5xl lg:text-7xl xl:text-8xl font-bold mb-6">
             Let's Build the
             <br />
-            <span className="text-red-500">Future Together</span>
+            <span className="text-red">Future Together</span>
           </h2>
           <p className="font-body text-lg text-white/60 max-w-2xl mx-auto">
             Have a project in mind? Let's discuss how we can bring your vision
@@ -150,8 +150,8 @@ const Contact = () => {
                   htmlFor="name"
                   className={`absolute left-0 font-body transition-all duration-300 pointer-events-none ${
                     focusedField === "name" || formData.name
-                      ? "-top-6 text-sm text-red-500"
-                      : "top-4 text-white/50"
+                      ? "-top-6 text-xs text-red"
+                      : "top-4 "
                   }`}
                 >
                   Your Name
@@ -165,10 +165,10 @@ const Contact = () => {
                   onFocus={() => setFocusedField("name")}
                   onBlur={() => setFocusedField(null)}
                   required
-                  className="w-full bg-transparent border-b-2 border-white/20 py-4 text-white font-body focus:outline-none focus:border-red-500 transition-colors duration-300"
+                  className="w-full bg-transparent border-b  py-4 text-white font-body focus:outline-none focus:border-red transition-colors duration-300 text-sm"
                 />
                 <div
-                  className="absolute bottom-0 left-0 h-0.5 bg-red-500 transition-all duration-500"
+                  className="absolute bottom-0 left-0 h-[1px] bg-red transition-all duration-500"
                   style={{ width: focusedField === "name" ? "100%" : "0%" }}
                 />
               </div>
@@ -179,8 +179,8 @@ const Contact = () => {
                   htmlFor="email"
                   className={`absolute left-0 font-body transition-all duration-300 pointer-events-none ${
                     focusedField === "email" || formData.email
-                      ? "-top-6 text-sm text-red-500"
-                      : "top-4 text-white/50"
+                      ? "-top-6 text-xs text-red"
+                      : "top-4"
                   }`}
                 >
                   Your Email
@@ -194,10 +194,10 @@ const Contact = () => {
                   onFocus={() => setFocusedField("email")}
                   onBlur={() => setFocusedField(null)}
                   required
-                  className="w-full bg-transparent border-b-2 border-white/20 py-4 text-white font-body focus:outline-none focus:border-red-500 transition-colors duration-300"
+                  className="w-full bg-transparent border-b py-4  font-body focus:outline-none focus:border-red transition-colors duration-300 text-sm"
                 />
                 <div
-                  className="absolute bottom-0 left-0 h-0.5 bg-red-500 transition-all duration-500"
+                  className="absolute bottom-0 left-0 h-[1px] bg-red transition-all duration-500"
                   style={{ width: focusedField === "email" ? "100%" : "0%" }}
                 />
               </div>
@@ -208,8 +208,8 @@ const Contact = () => {
                   htmlFor="message"
                   className={`absolute left-0 font-body transition-all duration-300 pointer-events-none ${
                     focusedField === "message" || formData.message
-                      ? "-top-6 text-sm text-red-500"
-                      : "top-4 text-white/50"
+                      ? "-top-6 text-xs text-red"
+                      : "top-4 "
                   }`}
                 >
                   Your Message
@@ -223,10 +223,10 @@ const Contact = () => {
                   onBlur={() => setFocusedField(null)}
                   required
                   rows={4}
-                  className="w-full bg-transparent border-b-2 border-white/20 py-4 text-white font-body focus:outline-none focus:border-red-500 transition-colors duration-300 resize-none"
+                  className="w-full bg-transparent border-b py-4  font-body focus:outline-none focus:border-red transition-colors duration-300 resize-none text-sm"
                 />
                 <div
-                  className="absolute bottom-0 left-0 h-0.5 bg-red-500 transition-all duration-500"
+                  className="absolute bottom-0 left-0 h-[1px] bg-red transition-all duration-500"
                   style={{ width: focusedField === "message" ? "100%" : "0%" }}
                 />
               </div>
@@ -235,18 +235,18 @@ const Contact = () => {
               <button
                 type="submit"
                 disabled={isSubmitting}
-                className="magnetic-btn w-full py-5 bg-red-500 text-white font-body text-sm uppercase tracking-widest hover:bg-red-600 transition-all duration-300 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed group hover:scale-[1.02]"
+                className="magnetic-btn w-full py-4 bg-red text-dark font-body text-xs font-bold uppercase tracking-widest hover:bg-white hover:text-dark transition-all duration-300 rounded-full flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed group hover:scale-[1.02]"
               >
                 {isSubmitting ? (
                   <span className="flex items-center gap-2">
-                    <span className="w-5 h-5 border-2 border-white/30 border-t-white rounded-full animate-spin" />
+                    <span className="w-4 h-4 border-2 border-dark/30 border-t-dark rounded-full animate-spin" />
                     Sending...
                   </span>
                 ) : isSubmitted ? (
-                  <span className="flex items-center gap-2">
-                    <span className="w-5 h-5 bg-green-500 rounded-full flex items-center justify-center">
+                  <span className="flex items-center gap-2 text-dark">
+                    <span className="w-4 h-4 bg-green-500 rounded-full flex items-center justify-center">
                       <svg
-                        className="w-3 h-3 text-white"
+                        className="w-2.5 h-2.5 "
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -264,7 +264,7 @@ const Contact = () => {
                 ) : (
                   <>
                     <span>Send Message</span>
-                    <Send className="w-4 h-4 group-hover:translate-x-1 transition-transform duration-300" />
+                    <Send className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform duration-300 text-dark" />
                   </>
                 )}
               </button>
@@ -277,7 +277,7 @@ const Contact = () => {
               <h3 className="font-display text-2xl font-bold mb-6">
                 Contact Information
               </h3>
-              <p className="font-body text-white/60 leading-relaxed">
+              <p className="font-body  leading-relaxed">
                 Feel free to reach out through any of these channels. I'm always
                 open to discussing new projects, creative ideas, or
                 opportunities to be part of your vision.
@@ -287,14 +287,14 @@ const Contact = () => {
             {/* Contact Details */}
             <div className="space-y-6">
               <div className="flex items-center gap-4 group">
-                <div className="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-red-500 group-hover:scale-110 transition-all duration-300">
-                  <Mail className="w-6 h-6 text-red-500 group-hover:text-white transition-colors duration-300" />
+                <div className="w-12 h-12 bg-red/10 border border-red/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-red group-hover:border-red transition-all duration-300">
+                  <Mail className="w-5 h-5 text-red group-hover:text-dark transition-colors duration-300" />
                 </div>
                 <div>
-                  <p className="font-body text-sm text-white/50 mb-1">Email</p>
+                  <p className="font-body text-xs  uppercase tracking-wider mb-0.5">Email</p>
                   <a
                     href="mailto:brightawah94@gmail.com"
-                    className="font-body text-lg text-white hover:text-red-500 transition-colors duration-300"
+                    className="font-body text-base  hover:text-red transition-colors duration-300"
                   >
                     brightawah94@gmail.com
                   </a>
@@ -302,15 +302,15 @@ const Contact = () => {
               </div>
 
               <div className="flex items-center gap-4 group">
-                <div className="w-14 h-14 bg-red-500/10 rounded-xl flex items-center justify-center flex-shrink-0 group-hover:bg-red-500 group-hover:scale-110 transition-all duration-300">
-                  <MapPin className="w-6 h-6 text-red-500 group-hover:text-white transition-colors duration-300" />
+                <div className="w-12 h-12 bg-red/10 border border-red/10 rounded-full flex items-center justify-center flex-shrink-0 group-hover:bg-red group-hover:border-red transition-all duration-300">
+                  <MapPin className="w-5 h-5 text-red group-hover:text-dark transition-colors duration-300" />
                 </div>
                 <div>
-                  <p className="font-body text-sm text-white/50 mb-1">
+                  <p className="font-body text-xs  uppercase tracking-wider mb-0.5">
                     Location
                   </p>
-                  <p className="font-body text-lg text-white">
-                    Enugu, Nigeria
+                  <p className="font-body text-base ">
+                    Lagos, Nigeria
                   </p>
                 </div>
               </div>
@@ -318,7 +318,7 @@ const Contact = () => {
 
             {/* Social Links */}
             <div>
-              <p className="font-body text-sm text-white/50 mb-4">Follow Me</p>
+              <p className="font-body text-xs  uppercase tracking-wider mb-4">Follow Me</p>
               <div className="social-icons flex gap-4">
                 {[
                   { icon: Github, href: "https://github.com/Beemhuse" },
@@ -330,22 +330,22 @@ const Contact = () => {
                     href={social.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="social-icon w-12 h-12 bg-white/5 rounded-xl flex items-center justify-center hover:bg-red-500 hover:scale-110 transition-all duration-300 group"
+                    className="social-icon w-10 h-10 bg-white/5 rounded-full flex items-center justify-center hover:bg-red hover:scale-110 transition-all duration-300 group"
                   >
-                    <social.icon className="w-5 h-5 text-white/50 group-hover:text-white transition-colors duration-300" />
+                    <social.icon className="w-4 h-4  group-hover:text-dark transition-colors duration-300" />
                   </a>
                 ))}
               </div>
             </div>
 
             {/* Availability Badge */}
-            <div className="glass-card p-6 rounded-xl group hover:border-red-500/50 transition-all duration-300">
+            <div className="bg-[#090909] p-5 rounded-none border border-white/5 flex items-center group hover:border-red/30 transition-all duration-300">
               <div className="flex items-center gap-3">
                 <div className="relative">
-                  <div className="w-3 h-3 bg-green-500 rounded-full" />
-                  <div className="absolute inset-0 w-3 h-3 bg-green-500 rounded-full animate-ping" />
+                  <div className="w-2 h-2 bg-green-500 rounded-full" />
+                  <div className="absolute inset-0 w-2 h-2 bg-green-500 rounded-full animate-ping" />
                 </div>
-                <span className="font-body text-sm text-white/70">
+                <span className="font-body text-xs text-white uppercase tracking-wider">
                   Available for new projects
                 </span>
               </div>

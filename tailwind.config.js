@@ -39,19 +39,19 @@ module.exports = {
           foreground: "hsl(var(--card-foreground))",
         },
         red: {
-          DEFAULT: '#ff0000',
-          dark: '#cc0000',
-          light: '#ff3333',
+          DEFAULT: '#C5A880',
+          dark: '#A68B63',
+          light: '#DFCBAC',
         },
         dark: {
-          DEFAULT: '#000000',
-          light: '#191919',
-          lighter: '#222222',
+          DEFAULT: '#080808',
+          light: '#121212',
+          lighter: '#1C1C1C',
         },
       },
       fontFamily: {
-        display: ['Teko', 'sans-serif'],
-        body: ['Rubik', 'sans-serif'],
+        display: ['Outfit', 'sans-serif'],
+        body: ['Plus Jakarta Sans', 'sans-serif'],
       },
       borderRadius: {
         xl: "calc(var(--radius) + 4px)",
@@ -62,8 +62,8 @@ module.exports = {
       },
       boxShadow: {
         xs: "0 1px 2px 0 rgb(0 0 0 / 0.05)",
-        glow: "0 0 30px rgba(255, 0, 0, 0.3)",
-        "glow-lg": "0 0 60px rgba(255, 0, 0, 0.4)",
+        glow: "0 0 30px rgba(197, 168, 128, 0.15)",
+        "glow-lg": "0 0 60px rgba(197, 168, 128, 0.2)",
       },
       keyframes: {
         "accordion-down": {
@@ -83,8 +83,8 @@ module.exports = {
           "50%": { transform: "translateY(-20px)" },
         },
         "pulse-glow": {
-          "0%, 100%": { boxShadow: "0 0 20px rgba(255, 0, 0, 0.4)" },
-          "50%": { boxShadow: "0 0 40px rgba(255, 0, 0, 0.8)" },
+          "0%, 100%": { boxShadow: "0 0 20px rgba(197, 168, 128, 0.2)" },
+          "50%": { boxShadow: "0 0 40px rgba(197, 168, 128, 0.4)" },
         },
         "slide-up": {
           "0%": { transform: "translateY(100%)", opacity: "0" },

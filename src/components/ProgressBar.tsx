@@ -29,7 +29,7 @@ const ProgressBar = () => {
         style={{
           width: `${progress}%`,
           transition: 'width 0.1s ease-out',
-          boxShadow: '0 0 10px rgba(255, 0, 0, 0.5), 0 0 20px rgba(255, 0, 0, 0.3)',
+          boxShadow: '0 0 10px rgba(197, 168, 128, 0.5), 0 0 20px rgba(197, 168, 128, 0.3)',
         }}
       />
       {/* Glow effect */}

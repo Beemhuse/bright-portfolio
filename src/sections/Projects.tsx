@@ -9,39 +9,79 @@ gsap.registerPlugin(ScrollTrigger);
 const Projects = () => {
   const sectionRef = useRef<HTMLElement>(null);
 
-  const projects = [
-    {
-      id: 1,
-      title: 'VPS Hub',
-      category: 'Deployment Platform',
-      description: 'VPSHub is a small control panel for deploying and previewing applications on remote VPS servers.',
-      image: '/vpshub.png',
-      tech: ['React', 'TypeScript', 'Prisma', 'Nest.js', 'PostgreSQL', 'Docker', ],
-      liveUrl: '#',
-      githubUrl: 'https://github.com/Beemhuse/vpshub.git',
-    },
-    {
-      id: 2,
-      title: 'Gadget Cartel',
-      category: 'E-commerce Platform',
-      description: 'A gadget e-commerce experience with seamless checkout, personalized recommendations, and immersive product showcases.',
-      image: '/gadget-cartel.png',
-      tech: ['Next.js', 'paystack', 'PostgreSQL', 'Tailwind', 'Nest js'],
-      liveUrl: 'https://gadgetcartel.com',
-      githubUrl: '#',
-    },
-    {
-      id: 3,
-      title: 'Waelng Portfolio',
-      category: 'Energy Company Website',
-      description: 'An award-winning portfolio site featuring WebGL animations, smooth transitions, and bold typography.',
-      image: '/waelng.png',
-      tech: ['Framer', 'Next js', 'Sanity', 'Tailwind'],
-      liveUrl: 'https://waelng.com/',
-      githubUrl: '#',
-    },
-  ];
+ const projects = [
+  {
+    id: 1,
+    title: 'VPS Hub',
+    category: 'Deployment Platform',
+    description:
+      'A lightweight deployment and preview platform for managing applications across remote VPS infrastructure with streamlined DevOps workflows.',
+    image: '/vpshub.png',
+    tech: ['React', 'TypeScript', 'Prisma', 'Nest.js', 'PostgreSQL', 'Docker'],
+    liveUrl: '#',
+    githubUrl: 'https://github.com/Beemhuse/vpshub.git',
+  },
 
+  {
+    id: 2,
+    title: 'Gadget Cartel',
+    category: 'E-commerce Platform',
+    description:
+      'A modern gadget commerce experience with immersive product showcases, seamless checkout flows, and scalable inventory management.',
+    image: '/gadget-cartel.png',
+    tech: ['Next.js', 'Paystack', 'PostgreSQL', 'TailwindCSS', 'Nest.js'],
+    liveUrl: 'https://gadgetcartel.com',
+    githubUrl: '#',
+  },
+
+  {
+    id: 3,
+    title: 'Waelng Portfolio',
+    category: 'Energy Company Website',
+    description:
+      'A premium corporate website experience for an energy company featuring bold visual storytelling, smooth transitions, and modern brand presentation.',
+    image: '/waelng.png',
+    tech: ['Next.js', 'Framer Motion', 'Sanity', 'TailwindCSS'],
+    liveUrl: 'https://waelng.com/',
+    githubUrl: '#',
+  },
+
+  {
+    id: 4,
+    title: 'Homix',
+    category: 'Roommate Finder Platform',
+    description:
+      'A trusted roommate and shared-apartment discovery platform helping users in Abuja connect with verified flatmates and affordable shared living spaces.',
+    image: '/homix.png',
+    tech: ['Next.js', 'TypeScript', 'TailwindCSS', 'Zustand'],
+    liveUrl: 'https://homix.com.ng',
+    githubUrl: '#',
+  },
+
+  {
+    id: 5,
+    title: 'Ogle',
+    category: 'PropTech Platform',
+    description:
+      'A modern Nigerian real estate platform transforming how users discover, rent, buy, lease, and manage verified properties and short stays.',
+    image: '/ogle.png',
+    tech: ['Next.js', 'TypeScript', 'TailwindCSS', 'Zustand'],
+    liveUrl: 'https://ogle.ng',
+    githubUrl: '#',
+  },
+
+  {
+    id: 6,
+    title: 'SaleTick',
+    category: 'Inventory & Sales Management',
+    description:
+      'An intelligent retail management platform enabling Nigerian businesses to track inventory, manage sales, generate invoices, and operate directly from WhatsApp.',
+    image: '/saletick.png',
+    tech: ['Next.js', 'Nest.js', 'Zustand', 'Docker'],
+    liveUrl: 'https://saletick.net',
+    githubUrl: '#',
+  },
+];
   useEffect(() => {
     const ctx = gsap.context(() => {
       // Section header animation with more drama
@@ -67,7 +107,7 @@ const Projects = () => {
         if (card && title && content) {
           // Background title parallax - faster
           gsap.to(title, {
-            x: '30%',
+            x: '20%',
             scrollTrigger: {
               trigger: card,
               start: 'top bottom',
@@ -128,7 +168,7 @@ const Projects = () => {
     <section
       id="projects"
       ref={sectionRef}
-      className="relative py-32 lg:py-40 overflow-hidden"
+      className="relative py-12 lg:py-20 overflow-hidden"
     >
       <div className="w-full px-6 lg:px-12">
         {/* Section Header */}
@@ -143,7 +183,7 @@ const Projects = () => {
               <span className="text-red">Projects</span>
             </h2>
           </div>
-          <p className="font-body text-lg text-white/60 max-w-md mt-6 lg:mt-0">
+          <p className="font-body text-lg  max-w-md mt-6 lg:mt-0">
             A curated selection of projects that showcase my expertise in design, 
             development, and problem-solving.
           </p>
@@ -160,9 +200,9 @@ const Projects = () => {
               {/* Background Title - Large outlined number */}
               <div
                 id={`project-title-${index}`}
-                className="absolute -top-20 left-0 pointer-events-none select-none z-0"
+                className="absolute -top-12 sm:-top-20 left-0 pointer-events-none select-none z-0 w-full overflow-hidden"
               >
-                <span className="font-display text-[20vw] font-bold outline-text opacity-20">
+                <span className="font-display text-[12vw] sm:text-[15vw] lg:text-[18vw] font-bold outline-text opacity-[0.03] block leading-none text-red">
                   {String(index + 1).padStart(2, '0')}
                 </span>
               </div>
@@ -171,7 +211,7 @@ const Projects = () => {
               <div className="relative z-10 grid lg:grid-cols-2 gap-8 lg:gap-16 items-center">
                 {/* Image */}
                 <div
-                  className={`relative overflow-hidden rounded-2xl group ${
+                  className={`relative overflow-hidden rounded-none group border border-white/5 shadow-[0_24px_48px_rgba(0,0,0,0.6)] ${
                     index % 2 === 1 ? 'lg:order-2' : ''
                   }`}
                 >
@@ -184,27 +224,23 @@ const Projects = () => {
                   </div>
 
                   {/* Animated Overlay */}
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-500" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/20 to-transparent opacity-60 group-hover:opacity-85 transition-opacity duration-500" />
                   
                   {/* Hover Actions */}
                   <div className="absolute inset-0 flex items-center justify-center gap-4">
                     <a
                       href={project.liveUrl}
-                      className="w-14 h-14 bg-white rounded-full flex items-center justify-center transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 hover:scale-110 hover:bg-red"
+                      className="w-12 h-12 bg-white rounded-full flex items-center justify-center transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100 hover:scale-110 hover:bg-red hover:text-dark"
                     >
-                      <ExternalLink className="w-6 h-6 text-black group-hover:text-white transition-colors" />
+                      <ExternalLink className="w-5 h-5 text-black transition-colors" />
                     </a>
                     <a
                       href={project.githubUrl}
-                      className="w-14 h-14 bg-white rounded-full flex items-center justify-center transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-200 hover:scale-110 hover:bg-red"
+                      className="w-12 h-12 bg-white rounded-full flex items-center justify-center transform translate-y-8 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-200 hover:scale-110 hover:bg-red hover:text-dark"
                     >
-                      <Github className="w-6 h-6 text-black group-hover:text-white transition-colors" />
+                      <Github className="w-5 h-5 text-black transition-colors" />
                     </a>
                   </div>
-
-                  {/* Corner Accent */}
-                  <div className="absolute bottom-0 right-0 w-20 h-20 bg-red transform translate-x-full translate-y-full group-hover:translate-x-0 group-hover:translate-y-0 transition-transform duration-500" 
-                       style={{ clipPath: 'polygon(100% 0, 100% 100%, 0 100%)' }} />
                 </div>
 
                 {/* Content */}
@@ -212,22 +248,22 @@ const Projects = () => {
                   id={`project-content-${index}`}
                   className={index % 2 === 1 ? 'lg:order-1' : ''}
                 >
-                  <span className="font-body text-sm uppercase tracking-[0.2em] text-red mb-4 block">
+                  <span className="font-body text-sm uppercase tracking-[0.2em] text-red mb-4 block font-semibold">
                     {project.category}
                   </span>
                   <h3 className="font-display text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 group-hover:text-red transition-colors duration-300">
                     {project.title}
                   </h3>
-                  <p className="font-body text-lg text-white/60 mb-8 leading-relaxed">
+                  <p className="font-body text-lg  mb-8 leading-relaxed">
                     {project.description}
                   </p>
 
                   {/* Tech Stack */}
-                  <div className="flex flex-wrap gap-3 mb-8">
+                  <div className="flex flex-wrap gap-2 mb-8">
                     {project.tech.map((tech, tIndex) => (
                       <span
                         key={tIndex}
-                        className="px-4 py-2 bg-white/5 rounded-full font-body text-sm text-white/70 hover:bg-red/20 hover:text-red transition-all duration-300"
+                        className="px-3.5 py-1 bg-dark-light/50 border border-white/10 font-body text-xs text-white/60 hover:border-red hover:text-red transition-all duration-300"
                       >
                         {tech}
                       </span>
@@ -249,15 +285,15 @@ const Projects = () => {
         </div>
 
         {/* View All Projects CTA */}
-        <div className="text-center mt-32">
+        {/* <div className="text-center mt-32">
           <Link
             to="/projects"
-            className="view-all-btn magnetic-btn inline-flex items-center gap-4 px-10 py-5 border-2 border-white/30 rounded-full font-body text-sm uppercase tracking-widest hover:border-red hover:bg-red transition-all duration-500 group"
+            className="view-all-btn magnetic-btn inline-flex items-center gap-4 px-8 py-4 border border-white/10 rounded-full font-body text-xs uppercase tracking-widest hover:border-red hover:bg-red hover:text-dark transition-all duration-500 group"
           >
             <span>View All Projects</span>
-            <ArrowUpRight className="w-5 h-5 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
+            <ArrowUpRight className="w-4 h-4 transform group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform duration-300" />
           </Link>
-        </div>
+        </div> */}
       </div>
     </section>
   );

@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { Github, Linkedin, Twitter } from 'lucide-react';
@@ -6,124 +6,14 @@ import { Github, Linkedin, Twitter } from 'lucide-react';
 gsap.registerPlugin(ScrollTrigger);
 
 const Hero = () => {
+  const [imgFailed, setImgFailed] = useState(false);
   const sectionRef = useRef<HTMLElement>(null);
-  const canvasRef = useRef<HTMLCanvasElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subtextRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
   const imageRef = useRef<HTMLDivElement>(null);
   const greetingRef = useRef<HTMLSpanElement>(null);
   const badgesRef = useRef<HTMLDivElement>(null);
-
-  // Fluid Background Animation with more particles
-  useEffect(() => {
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    const ctx = canvas.getContext('2d');
-    if (!ctx) return;
-
-    let animationId: number;
-    let particles: Array<{
-      x: number;
-      y: number;
-      vx: number;
-      vy: number;
-      radius: number;
-      color: string;
-      pulse: number;
-    }> = [];
-
-    const resize = () => {
-      canvas.width = window.innerWidth;
-      canvas.height = window.innerHeight;
-    };
-
-    const createParticles = () => {
-      particles = [];
-      const particleCount = Math.min(80, Math.floor(window.innerWidth / 20));
-      
-      for (let i = 0; i < particleCount; i++) {
-        particles.push({
-          x: Math.random() * canvas.width,
-          y: Math.random() * canvas.height,
-          vx: (Math.random() - 0.5) * 0.8,
-          vy: (Math.random() - 0.5) * 0.8,
-          radius: Math.random() * 120 + 60,
-          color: Math.random() > 0.7 ? 'rgba(255, 0, 0, 0.04)' : 'rgba(25, 25, 25, 0.6)',
-          pulse: Math.random() * Math.PI * 2,
-        });
-      }
-    };
-
-    const animate = () => {
-      ctx.fillStyle = 'rgba(0, 0, 0, 0.08)';
-      ctx.fillRect(0, 0, canvas.width, canvas.height);
-
-      particles.forEach((particle, i) => {
-        // Update position
-        particle.x += particle.vx;
-        particle.y += particle.vy;
-        particle.pulse += 0.02;
-
-        // Wrap around edges
-        if (particle.x < -particle.radius) particle.x = canvas.width + particle.radius;
-        if (particle.x > canvas.width + particle.radius) particle.x = -particle.radius;
-        if (particle.y < -particle.radius) particle.y = canvas.height + particle.radius;
-        if (particle.y > canvas.height + particle.radius) particle.y = -particle.radius;
-
-        // Pulsing radius
-        const pulsingRadius = particle.radius + Math.sin(particle.pulse) * 20;
-
-        const gradient = ctx.createRadialGradient(
-          particle.x,
-          particle.y,
-          0,
-          particle.x,
-          particle.y,
-          pulsingRadius
-        );
-        gradient.addColorStop(0, particle.color);
-        gradient.addColorStop(1, 'transparent');
-
-        ctx.beginPath();
-        ctx.arc(particle.x, particle.y, pulsingRadius, 0, Math.PI * 2);
-        ctx.fillStyle = gradient;
-        ctx.fill();
-
-        // Connect nearby particles
-        particles.slice(i + 1).forEach((other) => {
-          const dx = particle.x - other.x;
-          const dy = particle.y - other.y;
-          const distance = Math.sqrt(dx * dx + dy * dy);
-
-          if (distance < 200) {
-            ctx.beginPath();
-            ctx.moveTo(particle.x, particle.y);
-            ctx.lineTo(other.x, other.y);
-            ctx.strokeStyle = `rgba(255, 0, 0, ${0.03 * (1 - distance / 200)})`;
-            ctx.lineWidth = 0.5;
-            ctx.stroke();
-          }
-        });
-      });
-
-      animationId = requestAnimationFrame(animate);
-    };
-
-    resize();
-    createParticles();
-    animate();
-
-    window.addEventListener('resize', () => {
-      resize();
-      createParticles();
-    });
-
-    return () => {
-      cancelAnimationFrame(animationId);
-    };
-  }, []);
 
   // Enhanced entrance animations
   useEffect(() => {
@@ -207,60 +97,6 @@ const Hero = () => {
     return () => ctx.revert();
   }, []);
 
-  // Enhanced scroll parallax effects
-  useEffect(() => {
-    const ctx = gsap.context(() => {
-      // Headline moves up faster
-      gsap.to(headlineRef.current, {
-        y: -200,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 0.5,
-        },
-      });
-
-      // Image moves slower (parallax depth)
-      gsap.to(imageRef.current, {
-        y: 150,
-        rotateY: 8,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: 'top top',
-          end: 'bottom top',
-          scrub: 1,
-        },
-      });
-
-      // Subtext fades out
-      gsap.to(subtextRef.current, {
-        opacity: 0,
-        y: -100,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: '20% top',
-          end: '60% top',
-          scrub: 1,
-        },
-      });
-
-      // CTA fades out
-      gsap.to(ctaRef.current, {
-        opacity: 0,
-        y: -80,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: '30% top',
-          end: '70% top',
-          scrub: 1,
-        },
-      });
-    });
-
-    return () => ctx.revert();
-  }, []);
-
   // Split headline into characters
   const headlineText = "I'm Bright,";
   const subHeadlineText = 'A Fullstack Software Engineer';
@@ -272,13 +108,6 @@ const Hero = () => {
       className="relative min-h-screen w-full flex items-center overflow-hidden"
       style={{ perspective: '1000px' }}
     >
-      {/* Fluid Background Canvas */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 w-full h-full"
-        style={{ zIndex: 0 }}
-      />
-
       {/* Content */}
       <div className="relative z-10 w-full px-6 lg:px-12 py-32">
         <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
@@ -287,7 +116,7 @@ const Hero = () => {
             {/* Greeting */}
             <span
               ref={greetingRef}
-              className="inline-block font-body text-red-500 text-lg uppercase tracking-[0.3em] mb-6"
+              className="inline-block font-body text-red text-lg uppercase tracking-[0.3em] mb-6"
             >
               Hello!
             </span>
@@ -295,7 +124,7 @@ const Hero = () => {
             {/* Headline */}
             <h1
               ref={headlineRef}
-              className="font-display text-4xl sm:text-6xl lg:text-6xl xl:text-5xl font-bold leading-none mb-4"
+              className="font-display text-5xl sm:text-7xl lg:text-8xl xl:text-8xl font-bold leading-none mb-4"
               style={{ transformStyle: 'preserve-3d' }}
             >
               {headlineText.split('').map((char, i) => (
@@ -308,7 +137,7 @@ const Hero = () => {
                 </span>
               ))}
               <br />
-              <span className="text-red-500">{subHeadlineText.split('').map((char, i) => (
+              <span className="text-red">{subHeadlineText.split('').map((char, i) => (
                 <span
                   key={i}
                   className="char inline-block"
@@ -322,7 +151,7 @@ const Hero = () => {
             {/* Subtext */}
             <p
               ref={subtextRef}
-              className="font-body text-lg lg:text-xl text-white/70 max-w-xl mb-10 leading-relaxed"
+              className="font-body text-lg lg:text-xl text-neutral-600 max-w-xl mb-10 leading-relaxed"
             >
               I bring ideas to life through code, creating seamless digital experiences 
               that combine stunning design with powerful functionality.
@@ -334,9 +163,14 @@ const Hero = () => {
                 href="#contact"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                  const lenis = (window as any).lenis;
+                  if (lenis) {
+                    lenis.scrollTo('#contact');
+                  } else {
+                    document.querySelector('#contact')?.scrollIntoView({ behavior: 'smooth' });
+                  }
                 }}
-                className="magnetic-btn px-8 py-4 bg-red-500 text-white font-body text-sm uppercase tracking-widest hover:bg-red-600 transition-all duration-300 animate-pulse-red hover:scale-105"
+                className="magnetic-btn px-8 py-4 bg-red text-white font-body text-xs font-bold uppercase tracking-widest hover:bg-neutral-900 hover:text-white transition-all duration-300 rounded-full hover:scale-105"
               >
                 <span>Hire Me</span>
               </a>
@@ -344,9 +178,14 @@ const Hero = () => {
                 href="#projects"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
+                  const lenis = (window as any).lenis;
+                  if (lenis) {
+                    lenis.scrollTo('#projects');
+                  } else {
+                    document.querySelector('#projects')?.scrollIntoView({ behavior: 'smooth' });
+                  }
                 }}
-                className="magnetic-btn px-8 py-4 border border-white/30 text-white font-body text-sm uppercase tracking-widest hover:border-red-500 hover:text-red-500 transition-all duration-300 hover:scale-105"
+                className="magnetic-btn px-8 py-4 border border-neutral-200 text-neutral-800 font-body text-xs uppercase tracking-widest hover:border-red hover:text-red transition-all duration-300 rounded-full hover:scale-105"
               >
                 <span>View Work</span>
               </a>
@@ -364,7 +203,7 @@ const Hero = () => {
                   href={social.href}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white/50 hover:border-red-500 hover:text-red-500 hover:scale-110 transition-all duration-300"
+                  className="w-12 h-12 rounded-full border border-neutral-200 flex items-center justify-center text-neutral-500 hover:border-red hover:text-red hover:scale-110 transition-all duration-300"
                 >
                   <social.icon className="w-5 h-5" />
                 </a>
@@ -378,47 +217,55 @@ const Hero = () => {
             className="order-1 lg:order-2 relative"
             style={{ transformStyle: 'preserve-3d' }}
           >
-            <div className="relative aspect-square max-w-lg mx-auto lg:max-w-none">
+            <div className="relative aspect-square max-w-md mx-auto lg:max-w-none">
               {/* Animated Glow Effect */}
-              <div className="absolute inset-0 bg-red-500/20 rounded-full blur-[100px] animate-pulse" />
+              <div className="absolute inset-0 bg-red/5 rounded-full blur-[100px] pointer-events-none animate-pulse" />
               
               {/* Image Container */}
-              <div className="relative overflow-hidden rounded-3xl">
-                {/* <img
-                  src="/bright.avif"
-                  alt="Bright - Fullstack Software Engineer"
-                  className="w-full h-full object-cover"
-                />
-                 */}
+              <div className="relative overflow-hidden rounded-2xl border border-neutral-200/50 shadow-lg aspect-square bg-neutral-50">
+                {!imgFailed ? (
+                  <img
+                    src="/bright.avif"
+                    alt="Bright - Fullstack Software Engineer"
+                    className="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-700 pointer-events-none"
+                    onError={() => setImgFailed(true)}
+                  />
+                ) : (
+                  <div className="w-full h-full flex flex-col items-center justify-center bg-gradient-to-br from-neutral-100 via-neutral-50 to-neutral-200">
+                    <span className="font-display text-9xl font-light text-red select-none tracking-tighter">B</span>
+                    <span className="font-body text-xs text-neutral-500 tracking-widest uppercase mt-2">Engineer</span>
+                  </div>
+                )}
+                
                 {/* Overlay Gradient */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/20 via-transparent to-transparent pointer-events-none" />
               </div>
 
-              {/* Floating Badges */}
-              <div ref={badgesRef}>
+              {/* Floating Badges for Desktop & Grid/Inline Row for Mobile */}
+              <div ref={badgesRef} className="flex sm:block justify-center gap-4 mt-6 sm:mt-0 relative w-full sm:w-auto">
                 {/* Badge 1 */}
-                <div className="absolute -bottom-4 -left-4 lg:-bottom-8 lg:-left-8 glass-card px-6 py-4 rounded-xl animate-float">
-                  <span className="font-display text-4xl lg:text-5xl font-bold text-red-500">5+</span>
-                  <p className="font-body text-sm text-white/70">Years Experience</p>
+                <div className="relative sm:absolute bottom-0 left-0 sm:-bottom-4 sm:-left-4 lg:-bottom-8 lg:-left-8 bg-white/80 shadow-md backdrop-blur-md px-5 py-2.5 sm:px-6 sm:py-3.5 rounded-full border border-neutral-200/50 flex items-center gap-3 animate-float flex-1 justify-center sm:justify-start">
+                  <span className="font-display text-2xl sm:text-3xl font-semibold text-red">5+</span>
+                  <p className="font-body text-[10px] sm:text-xs text-neutral-600 tracking-wider uppercase">Years Experience</p>
                 </div>
 
                 {/* Badge 2 */}
                 <div
-                  className="absolute -top-4 -right-4 lg:-top-8 lg:-right-8 glass-card px-6 py-4 rounded-xl animate-float"
+                  className="relative sm:absolute top-0 right-0 sm:-top-4 sm:-right-4 lg:-top-8 lg:-right-8 bg-white/80 shadow-md backdrop-blur-md px-5 py-2.5 sm:px-6 sm:py-3.5 rounded-full border border-neutral-200/50 flex items-center gap-3 animate-float flex-1 justify-center sm:justify-start"
                   style={{ animationDelay: '1s' }}
                 >
-                  <span className="font-display text-4xl lg:text-5xl font-bold text-red-500">10+</span>
-                  <p className="font-body text-sm text-white/70">Projects Completed</p>
+                  <span className="font-display text-2xl sm:text-3xl font-semibold text-red">10+</span>
+                  <p className="font-body text-[10px] sm:text-xs text-neutral-600 tracking-wider uppercase">Projects Done</p>
                 </div>
 
                 {/* Badge 3 */}
                 <div
-                  className="absolute bottom-20 -right-8 lg:bottom-32 lg:-right-12 glass-card px-4 py-3 rounded-xl animate-float hidden lg:block"
+                  className="absolute bottom-20 -right-4 lg:bottom-32 lg:-right-12 bg-white/80 shadow-md backdrop-blur-md px-5 py-2.5 rounded-full border border-neutral-200/50 animate-float hidden sm:block"
                   style={{ animationDelay: '0.5s' }}
                 >
                   <div className="flex items-center gap-2">
-                    <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse" />
-                    <span className="font-body text-sm text-white/70">Available</span>
+                    <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse" />
+                    <span className="font-body text-[10px] sm:text-xs text-neutral-600 tracking-wider uppercase">Available</span>
                   </div>
                 </div>
               </div>
@@ -429,15 +276,15 @@ const Hero = () => {
 
       {/* Scroll Indicator */}
       <div className="absolute bottom-8 left-1/2 -translate-x-1/2 z-10 hidden lg:flex flex-col items-center gap-2">
-        <span className="font-body text-xs uppercase tracking-widest text-white/50">Scroll</span>
-        <div className="w-6 h-10 border-2 border-white/30 rounded-full flex items-start justify-center p-2">
-          <div className="w-1.5 h-3 bg-red-500 rounded-full animate-bounce" />
+        <span className="font-body text-[10px] uppercase tracking-[0.2em] text-neutral-400">Scroll</span>
+        <div className="w-5 h-8 border border-neutral-200 rounded-full flex items-start justify-center p-1">
+          <div className="w-1 h-2 bg-red rounded-full animate-bounce" />
         </div>
       </div>
 
       {/* Corner Decorations */}
-      <div className="absolute top-32 right-12 w-px h-32 bg-gradient-to-b from-transparent via-red-500/50 to-transparent hidden lg:block" />
-      <div className="absolute bottom-32 left-12 w-px h-32 bg-gradient-to-b from-transparent via-red-500/50 to-transparent hidden lg:block" />
+      <div className="absolute top-32 right-12 w-px h-32 bg-gradient-to-b from-transparent via-red/20 to-transparent hidden lg:block" />
+      <div className="absolute bottom-32 left-12 w-px h-32 bg-gradient-to-b from-transparent via-red/20 to-transparent hidden lg:block" />
     </section>
   );
 };

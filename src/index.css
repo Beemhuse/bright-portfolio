@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;600;700;800,900&family=Teko:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,25 +6,25 @@
 
 @layer base {
   :root {
-    --background: 0 0% 0%;
-    --foreground: 0 0% 100%;
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 100%;
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 100%;
-    --primary: 0 100% 50%;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 5%;
+    --card: 0 0% 98%;
+    --card-foreground: 0 0% 5%;
+    --popover: 0 0% 98%;
+    --popover-foreground: 0 0% 5%;
+    --primary: 36 37% 64%;
     --primary-foreground: 0 0% 100%;
-    --secondary: 0 0% 10%;
-    --secondary-foreground: 0 0% 100%;
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 80%;
-    --accent: 0 100% 50%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 5%;
+    --muted: 0 0% 95%;
+    --muted-foreground: 0 0% 40%;
+    --accent: 36 37% 64%;
     --accent-foreground: 0 0% 100%;
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 98%;
-    --border: 0 0% 20%;
-    --input: 0 0% 20%;
-    --ring: 0 100% 50%;
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 36 37% 64%;
     --radius: 0.5rem;
   }
 }
@@ -39,16 +39,16 @@
   }
   
   body {
-    @apply bg-black text-white antialiased;
-    font-family: 'Rubik', sans-serif;
+    @apply bg-white text-black antialiased;
+    font-family: 'Plus Jakarta Sans', sans-serif;
     overflow-x: hidden;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
   }
   
   ::selection {
-    background: rgba(255, 0, 0, 0.3);
-    color: white;
+    background: rgba(197, 168, 128, 0.25);
+    color: black;
   }
 }
 
@@ -79,39 +79,26 @@ html.lenis {
 }
 
 ::-webkit-scrollbar-track {
-  background: #000;
+  background: #ffffff;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #333 0%, #ff0000 100%);
+  background: linear-gradient(180deg, #E6E6E6 0%, #C5A880 100%);
   border-radius: 5px;
-  border: 2px solid #000;
+  border: 2px solid #ffffff;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: linear-gradient(180deg, #444 0%, #ff3333 100%);
+  background: linear-gradient(180deg, #222 0%, #DFCBAC 100%);
 }
 
 /* Typography */
 .font-display {
-  font-family: 'Teko', sans-serif;
+  font-family: 'Outfit', sans-serif;
 }
 
 .font-body {
-  font-family: 'Rubik', sans-serif;
-}
-
-/* Grain Overlay */
-.grain-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+  font-family: 'Plus Jakarta Sans', sans-serif;
 }
 
 /* Custom Cursor */
@@ -119,7 +106,7 @@ html.lenis {
   position: fixed;
   width: 20px;
   height: 20px;
-  border: 2px solid #ff0000;
+  border: 1px solid #C5A880;
   border-radius: 50%;
   pointer-events: none;
   z-index: 10000;
@@ -133,7 +120,7 @@ html.lenis {
 .custom-cursor.hover {
   width: 60px;
   height: 60px;
-  background: rgba(255, 0, 0, 0.1);
+  background: rgba(197, 168, 128, 0.08);
 }
 
 /* Animation Classes */
@@ -162,7 +149,7 @@ html.lenis {
   left: 50%;
   width: 0;
   height: 0;
-  background: #ff0000;
+  background: #C5A880;
   border-radius: 50%;
   transform: translate(-50%, -50%);
   transition: width 0.6s cubic-bezier(0.16, 1, 0.3, 1), 
@@ -181,21 +168,21 @@ html.lenis {
 
 /* Glass Card */
 .glass-card {
-  background: rgba(25, 25, 25, 0.6);
+  background: rgba(255, 255, 255, 0.7);
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(0, 0, 0, 0.08);
   transition: all 0.3s ease;
 }
 
 .glass-card:hover {
-  border-color: rgba(255, 0, 0, 0.3);
-  box-shadow: 0 0 30px rgba(255, 0, 0, 0.1);
+  border-color: rgba(197, 168, 128, 0.2);
+  box-shadow: 0 0 30px rgba(197, 168, 128, 0.05);
 }
 
 /* Gradient Text */
 .gradient-text {
-  background: linear-gradient(135deg, #fff 0%, #ccc 100%);
+  background: linear-gradient(135deg, #111 0%, #444 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -203,20 +190,20 @@ html.lenis {
 
 /* Red Glow */
 .red-glow {
-  box-shadow: 0 0 30px rgba(255, 0, 0, 0.3),
-              0 0 60px rgba(255, 0, 0, 0.2),
-              0 0 90px rgba(255, 0, 0, 0.1);
+  box-shadow: 0 0 30px rgba(197, 168, 128, 0.15),
+              0 0 60px rgba(197, 168, 128, 0.1),
+              0 0 90px rgba(197, 168, 128, 0.05);
 }
 
 /* Shadow Glow */
 .shadow-glow {
-  box-shadow: 0 0 20px rgba(255, 0, 0, 0.4),
-              0 0 40px rgba(255, 0, 0, 0.2);
+  box-shadow: 0 0 20px rgba(197, 168, 128, 0.2),
+              0 0 40px rgba(197, 168, 128, 0.1);
 }
 
 /* Outline Text */
 .outline-text {
-  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.3);
+  -webkit-text-stroke: 2px rgba(0, 0, 0, 0.12);
   -webkit-text-fill-color: transparent;
 }
 
@@ -232,7 +219,7 @@ html.lenis {
   left: 0;
   width: 0;
   height: 2px;
-  background: #ff0000;
+  background: #C5A880;
   transition: width 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
@@ -251,13 +238,14 @@ html.lenis {
   position: relative;
   background: transparent;
   border: none;
-  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 2px solid rgba(0, 0, 0, 0.15);
+  color: #000000;
   transition: border-color 0.3s ease;
 }
 
 .input-animated:focus {
   outline: none;
-  border-color: #ff0000;
+  border-color: #C5A880;
 }
 
 /* Floating Animation */
@@ -277,10 +265,10 @@ html.lenis {
 /* Pulse Animation */
 @keyframes pulse-red {
   0%, 100% {
-    box-shadow: 0 0 0 0 rgba(255, 0, 0, 0.4);
+    box-shadow: 0 0 0 0 rgba(197, 168, 128, 0.3);
   }
   50% {
-    box-shadow: 0 0 0 20px rgba(255, 0, 0, 0);
+    box-shadow: 0 0 0 20px rgba(197, 168, 128, 0);
   }
 }
 
@@ -377,7 +365,7 @@ html.lenis {
 .nav-blur {
   backdrop-filter: blur(20px);
   -webkit-backdrop-filter: blur(20px);
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(255, 255, 255, 0.85);
 }
 
 /* Project Card Hover */
@@ -472,13 +460,13 @@ a:focus-visible,
 button:focus-visible,
 input:focus-visible,
 textarea:focus-visible {
-  outline: 2px solid #ff0000;
+  outline: 2px solid #C5A880;
   outline-offset: 2px;
 }
 
 /* Progress Bar Glow */
 .progress-glow {
-  box-shadow: 0 0 10px rgba(255, 0, 0, 0.5),
-              0 0 20px rgba(255, 0, 0, 0.3),
-              0 0 30px rgba(255, 0, 0, 0.2);
+  box-shadow: 0 0 10px rgba(197, 168, 128, 0.4),
+              0 0 20px rgba(197, 168, 128, 0.2),
+              0 0 30px rgba(197, 168, 128, 0.1);
 }
