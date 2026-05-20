@@ -185,39 +185,9 @@ const ProjectsPage = () => {
   }, [filteredProjects]);
 
   // 3D tilt effect for cards
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
-    // Disable on touch screens and mobile to prevent layout and scroll jitter
-    const isTouch = window.matchMedia("(pointer: coarse)").matches || 
-                    !window.matchMedia("(hover: hover)").matches ||
-                    window.innerWidth < 768;
-    if (isTouch) return;
 
-    const card = e.currentTarget;
-    const rect = card.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const y = e.clientY - rect.top;
-    const centerX = rect.width / 2;
-    const centerY = rect.height / 2;
-    const rotateX = (y - centerY) / 15;
-    const rotateY = (centerX - x) / 15;
 
-    gsap.to(card, {
-      rotateX: -rotateX,
-      rotateY: -rotateY,
-      duration: 0.3,
-      ease: 'power2.out',
-    });
-  };
 
-  const handleMouseLeave = (e: React.MouseEvent<HTMLDivElement>) => {
-    gsap.to(e.currentTarget, {
-      rotateX: 0,
-      rotateY: 0,
-      duration: 0.5,
-      ease: 'power2.out',
-    });
-    setHoveredProject(null);
-  };
 
   return (
     <div ref={pageRef} className="min-h-screen bg-dark text-white">

@@ -7,7 +7,6 @@ import {
   Paintbrush,
   Cloud,
   ArrowUpRight,
-  Check,
 } from "lucide-react";
 
 const Services = () => {

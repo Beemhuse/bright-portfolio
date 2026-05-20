@@ -19,7 +19,7 @@ import CustomCursor from './components/CustomCursor';
 import ProgressBar from './components/ProgressBar';
 
 // Pages
-import ProjectsPage from './pages/ProjectsPage';
+// import ProjectsPage from './pages/ProjectsPage';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -124,7 +124,7 @@ const AppContent = () => {
       {/* Routes */}
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/projects" element={<ProjectsPage />} />
+        {/* <Route path="/projects" element={<ProjectsPage />} /> */}
       </Routes>
     </div>
   );

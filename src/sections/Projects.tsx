@@ -2,7 +2,6 @@ import { useEffect, useRef } from 'react';
 import { gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { ArrowUpRight, ExternalLink, Github } from 'lucide-react';
-import { Link } from 'react-router-dom';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -33,7 +32,6 @@ const Projects = () => {
     liveUrl: 'https://gadgetcartel.com',
     githubUrl: '#',
   },
-
   {
     id: 3,
     title: 'Waelng Portfolio',
