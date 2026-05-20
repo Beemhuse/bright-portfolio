@@ -170,7 +170,7 @@ const Projects = () => {
     >
       <div className="w-full px-6 lg:px-12">
         {/* Section Header */}
-        <div className="projects-header flex flex-col lg:flex-row lg:items-end lg:justify-between mb-20">
+        <div className="text-black flex flex-col lg:flex-row lg:items-end lg:justify-between mb-20">
           <div>
             <span className="font-body text-sm uppercase tracking-[0.3em] text-red mb-4 block">
               Selected Works

@@ -168,17 +168,17 @@ const Services = () => {
       className="relative py-32 lg:py-40 overflow-hidden"
     >
       {/* Animated Background Glow */}
-      <div className="services-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-red/5 rounded-full blur-[200px] pointer-events-none" />
+      {/* <div className="services-glow absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] bg-red/5 rounded-full blur-[200px] pointer-events-none" /> */}
 
       <div className="relative z-10 w-full px-6 lg:px-12">
         {/* Section Header */}
-        <div className="services-header text-center mb-20">
+        <div className=" text-center mb-20">
           <span className="font-body text-sm uppercase tracking-[0.3em] text-red mb-4 block">
             My Expertise
           </span>
-          <h2 className="font-display text-5xl lg:text-7xl xl:text-8xl font-bold mb-6">
+          {/* <h2 className="font-display text-black text-5xl lg:text-7xl xl:text-8xl font-bold mb-6">
             Services I Offer
-          </h2>
+          </h2> */}
           <p className="font-body text-lg text-neutral-600 max-w-2xl mx-auto">
             From concept to deployment, I provide end-to-end solutions that help
             businesses thrive in the digital landscape.

@@ -162,7 +162,7 @@ const Testimonials = () => {
           <span className="font-body text-xs uppercase tracking-[0.3em] text-red mb-4 block">
             Client Voices
           </span>
-          <h2 className="font-display text-4xl lg:text-6xl xl:text-7xl font-bold tracking-tight">
+          <h2 className="font-display text-4xl lg:text-6xl text-white xl:text-7xl font-bold tracking-tight">
             What They Say
           </h2>
         </div>

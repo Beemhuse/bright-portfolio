@@ -118,7 +118,7 @@ const Hero = () => {
               ref={greetingRef}
               className="inline-block font-body text-red text-lg uppercase tracking-[0.3em] mb-6"
             >
-              Hello!
+              Hello, I'm Bright!
             </span>
 
             {/* Headline */}

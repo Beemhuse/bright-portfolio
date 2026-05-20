@@ -66,11 +66,11 @@ const Footer = () => {
                   e.preventDefault();
                   scrollToTop();
                 }}
-                className="font-display text-5xl lg:text-6xl font-bold text-white hover:text-red transition-colors duration-300 inline-block mb-6"
+                className="font-display text-5xl lg:text-6xl font-bold  hover:text-red transition-colors duration-300 inline-block mb-6"
               >
                 BRIGHT
               </a>
-              <p className="font-body text-white/60 leading-relaxed max-w-sm">
+              <p className="font-body  leading-relaxed max-w-sm">
                 Fullstack Software Engineer crafting digital experiences that 
                 combine stunning design with powerful functionality.
               </p>
@@ -92,7 +92,7 @@ const Footer = () => {
                           document.querySelector(link.href)?.scrollIntoView({ behavior: 'smooth' });
                         }
                       }}
-                      className="font-body text-xs text-white/50 hover:text-red transition-colors duration-300 link-underline uppercase tracking-wider"
+                      className="font-body text-xs  hover:text-red transition-colors duration-300 link-underline uppercase tracking-wider"
                     >
                       {link.name}
                     </a>
@@ -110,7 +110,7 @@ const Footer = () => {
                       href={link.href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="font-body text-xs text-white/50 hover:text-red transition-colors duration-300 link-underline uppercase tracking-wider"
+                      className="font-body text-xs  hover:text-red transition-colors duration-300 link-underline uppercase tracking-wider"
                     >
                       {link.name}
                     </a>
@@ -122,11 +122,11 @@ const Footer = () => {
 
           {/* Bottom Bar */}
           <div className="flex flex-col lg:flex-row items-center justify-between gap-6 pt-10 border-t border-white/5">
-            <p className="font-body text-xs text-white/40 flex items-center gap-2 uppercase tracking-wider">
+            <p className="font-body text-xs  flex items-center gap-2 uppercase tracking-wider">
               Made with <Heart className="w-3.5 h-3.5 text-red fill-red" /> by Bright
             </p>
 
-            <p className="font-body text-xs text-white/40 uppercase tracking-wider">
+            <p className="font-body text-xs  uppercase tracking-wider">
               © {new Date().getFullYear()} Bright. All rights reserved.
             </p>
 
